@@ -154,6 +154,7 @@ section[id] {
   max-width: 680px;
 }
 
+.boton,
 #hero a,
 #llamado-accion a {
   display: inline-flex;
@@ -161,19 +162,32 @@ section[id] {
   justify-content: center;
   padding: 0.95rem 1.6rem;
   border-radius: 0.9rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+#hero a,
+#llamado-accion a {
   background: var(--secondary);
   color: #ffffff;
-  font-weight: 700;
   box-shadow: 0 10px 20px rgba(232, 155, 82, 0.28);
-  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.boton-primario {
+  background: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 10px 20px rgba(31, 95, 122, 0.2);
 }
 
 #hero a:hover,
 #hero a:focus-visible,
 #llamado-accion a:hover,
-#llamado-accion a:focus-visible {
-  background: var(--secondary-dark);
-  box-shadow: 0 0 0 3px rgba(232, 155, 82, 0.25);
+#llamado-accion a:focus-visible,
+.boton-primario:hover,
+.boton-primario:focus-visible {
+  background: var(--primary-dark);
+  box-shadow: 0 0 0 3px rgba(31, 95, 122, 0.18);
   outline: none;
 }
 
@@ -196,6 +210,42 @@ section[id] {
 #como-funciona {
   display: grid;
   gap: 1rem;
+}
+
+.alba-layout {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  align-items: center;
+  gap: 2rem;
+}
+
+.alba-texto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.alba-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.alba-imagen {
+  width: min(320px, 72vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--primary-soft);
+  border: 4px solid var(--primary-soft-strong);
+  box-shadow: 0 18px 32px rgba(22, 62, 84, 0.12);
+}
+
+.alba-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 #como-funciona ol {
@@ -241,6 +291,21 @@ footer p {
 
   #hero {
     min-height: auto;
+  }
+
+  .alba-layout {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .alba-visual {
+    order: 1;
+  }
+
+  .alba-texto {
+    order: 2;
+    align-items: center;
+    text-align: center;
   }
 }
 
