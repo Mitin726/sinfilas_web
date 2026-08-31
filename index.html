@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>[TÍTULO DE LA PÁGINA AQUÍ]</title>
+    <title>SinFilas</title>
+    <link rel="icon" type="image/png" href="images/logo_sinfilas.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
@@ -13,11 +14,14 @@
   <body>
     <!-- Header: logo/nombre del proyecto y navegación simple -->
     <header>
-      <a href="#hero">[LOGO/NOMBRE DEL PROYECTO AQUÍ]</a>
-      <nav aria-label="[NAVEGACIÓN PRINCIPAL AQUÍ]">
-        <a href="#problema">[ENLACE 1 AQUÍ]</a>
-        <a href="#solucion">[ENLACE 2 AQUÍ]</a>
-        <a href="#como-funciona">[ENLACE 3 AQUÍ]</a>
+      <div class="brand-wrap">
+        <img class="brand-logo" src="images/logo_sinfilas.png" alt="SinFilas">
+        <a href="#hero">SinFilas</a>
+      </div>
+      <nav aria-label="Navegación principal">
+        <a href="#problema">El problema</a>
+        <a href="#alba">Conoce a Alba</a>
+        <a href="#como-funciona">Cómo funciona</a>
       </nav>
     </header>
 
@@ -55,9 +59,14 @@
       </section>
 
       <!-- Sección La solución: consultar antes de ir -->
-      <section id="solucion">
-        <h2>[TÍTULO DE LA SOLUCIÓN AQUÍ]</h2>
-        <p>[DESCRIPCIÓN DE LA SOLUCIÓN AQUÍ]</p>
+      <section id="solucion" class="solucion-layout">
+        <div class="solucion-texto">
+          <h2>Existe una forma más simple</h2>
+          <p>Antes de salir de casa, puedes preguntar si el medicamento está disponible y evitar un viaje largo o una fila innecesaria. Así puedes decidir con calma y ahorrar tiempo, energía y preocupación.</p>
+        </div>
+        <div class="solucion-visual" aria-label="Ilustración de consulta de medicamentos antes de salir">
+          <img class="solucion-imagen" src="images/imagen_solucion.png" alt="Persona consultando la disponibilidad de un medicamento desde su celular">
+        </div>
       </section>
 
       <!-- Sección Conoce a Alba: presentación del asistente -->
@@ -65,7 +74,7 @@
         <div class="alba-texto">
           <h2>Te presentamos a Alba, tu asistente virtual</h2>
           <p>Alba es una asistente virtual que puedes escribir por Telegram como si fuera un mensaje normal. Solo escribe el nombre del medicamento que necesitas y ella te responde en segundos con la información sobre su disponibilidad. No reemplaza al personal de salud, pero sí ayuda a ahorrar tiempo, esfuerzo y desplazamientos innecesarios.</p>
-          <a href="#" class="boton boton-primario">Habla con Alba</a>
+          <a href="https://t.me/medicamentos_alba_bot" target="_blank" rel="noopener noreferrer" class="boton boton-primario">Habla con Alba</a>
         </div>
         <div class="alba-visual">
           <div class="alba-imagen" aria-label="Perfil de Alba, asistente virtual">
@@ -104,14 +113,25 @@
 
       <!-- Sección de llamado a la acción final -->
       <section id="llamado-accion">
-        <h2>[TÍTULO DEL LLAMADO A LA ACCIÓN AQUÍ]</h2>
-        <a href="#hero">[BOTÓN FINAL AQUÍ]</a>
+        <h2>No pierdas más tiempo en filas innecesarias</h2>
+        <p>Consulta antes de salir de casa y disfruta de más tranquilidad, menos esperas y la certeza de ir solo cuando el medicamento esté disponible.</p>
+        <a href="https://t.me/medicamentos_alba_bot" target="_blank" rel="noopener noreferrer" class="boton boton-primario">Habla con Alba ahora</a>
       </section>
     </main>
 
     <!-- Footer -->
     <footer>
-      <p>[INFORMACIÓN DEL PIE DE PÁGINA AQUÍ]</p>
+      <div class="footer-content">
+        <div class="footer-texto">
+          <p class="footer-brand">Alba</p>
+          <p>Un asistente pensado para cuidar tu tiempo y tranquilidad</p>
+          <p><a href="https://t.me/medicamentos_alba_bot" target="_blank" rel="noopener noreferrer">Habla con Alba en Telegram</a></p>
+          <p>© 2026 Alba. Todos los derechos reservados.</p>
+        </div>
+        <div class="footer-logo-wrap">
+          <img class="footer-logo" src="images/logo_sinfilas.png" alt="SinFilas">
+        </div>
+      </div>
     </footer>
   </body>
 </html>
