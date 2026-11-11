@@ -1,0 +1,118 @@
+---
+// Control para agrandar la letra de toda la página. La elección se recuerda
+// en este navegador (el script en línea de BaseLayout la aplica al cargar).
+const opciones = [
+  { valor: "normal", texto: "A", etiqueta: "Letra normal" },
+  { valor: "grande", texto: "A+", etiqueta: "Letra grande" },
+  { valor: "muy-grande", texto: "A++", etiqueta: "Letra muy grande" },
+];
+---
+
+<div class="tamano-texto" role="group" aria-labelledby="tamano-texto-titulo">
+  <span id="tamano-texto-titulo" class="titulo">
+    Tamaño de letra
+  </span>
+  <div class="opciones">
+    {opciones.map(({ valor, texto, etiqueta }, i) => (
+      <button
+        type="button"
+        class:list={["opcion", `opcion--${i}`]}
+        data-tamano={valor}
+        aria-pressed={valor === "normal" ? "true" : "false"}
+      >
+        {texto}
+        {/* El nombre accesible empieza por el texto visible ("A+ letra grande"):
+            así funciona también con control por voz. */}
+        <span class="sr-only">{" " + etiqueta.toLowerCase()}</span>
+      </button>
+    ))}
+  </div>
+</div>
+
+<script>
+  const CLAVE = "tamano-texto";
+  const raiz = document.documentElement;
+  const botones = document.querySelectorAll<HTMLButtonElement>("[data-tamano]");
+
+  function aplicar(valor: string) {
+    if (valor === "normal") delete raiz.dataset.texto;
+    else raiz.dataset.texto = valor;
+    botones.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.tamano === valor)));
+  }
+
+  aplicar(raiz.dataset.texto ?? "normal");
+
+  botones.forEach((boton) => {
+    boton.addEventListener("click", () => {
+      const valor = boton.dataset.tamano ?? "normal";
+      aplicar(valor);
+      try {
+        localStorage.setItem(CLAVE, valor);
+      } catch {
+        // Sin almacenamiento (modo privado): el cambio solo dura esta visita.
+      }
+    });
+  });
+</script>
+
+<style>
+  .tamano-texto {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .titulo {
+    color: var(--muted);
+    font-size: 1rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .opciones {
+    display: flex;
+    gap: 0.3rem;
+    padding: 0.25rem;
+    border-radius: 0.9rem;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+  }
+
+  .opcion {
+    min-width: 3rem;
+    min-height: 3rem;
+    padding: 0 0.5rem;
+    border: 0;
+    border-radius: 0.7rem;
+    background: transparent;
+    color: var(--primary-dark);
+    font-family: inherit;
+    font-weight: 900;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  /* Tamaños fijos en px: el botón muestra el efecto sin crecer con la página. */
+  .opcion--0 {
+    font-size: 16px;
+  }
+
+  .opcion--1 {
+    font-size: 20px;
+  }
+
+  .opcion--2 {
+    font-size: 24px;
+  }
+
+  .opcion:hover {
+    background: var(--primary-soft);
+  }
+
+  .opcion[aria-pressed="true"] {
+    background: var(--primary);
+    color: #ffffff;
+  }
+</style>

@@ -1,10 +1,12 @@
 ---
 // Sección Escríbele así: ejemplos de mensajes listos para copiar
 import { ejemplos } from "../data/ejemplos";
+import BotonEscuchar from "./BotonEscuchar.astro";
 ---
 
 <section id="ejemplos" class="ejemplos seccion-tarjeta">
   <h2>Escríbele así, como un mensaje normal</h2>
+  <BotonEscuchar />
   <p class="intro">No necesitas palabras especiales. Estos son algunos ejemplos:</p>
 
   <ul class="lista">
@@ -55,6 +57,7 @@ import { ejemplos } from "../data/ejemplos";
 <style>
   .ejemplos {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1.25rem;
   }
 
@@ -64,7 +67,7 @@ import { ejemplos } from "../data/ejemplos";
   }
 
   .intro {
-    font-size: 1.15rem;
+    font-size: 1.35rem;
   }
 
   .lista {
@@ -77,6 +80,7 @@ import { ejemplos } from "../data/ejemplos";
 
   .ejemplo {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
@@ -87,7 +91,9 @@ import { ejemplos } from "../data/ejemplos";
   }
 
   .texto {
-    font-size: 1.25rem;
+    flex: 1 1 12rem;
+    min-width: 0;
+    font-size: 1.4rem;
     font-weight: 700;
     color: #111b21;
   }
@@ -101,7 +107,7 @@ import { ejemplos } from "../data/ejemplos";
     background: #ffffff;
     color: var(--primary);
     font: inherit;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 700;
     cursor: pointer;
     transition:

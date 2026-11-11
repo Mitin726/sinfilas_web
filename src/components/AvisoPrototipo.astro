@@ -11,7 +11,10 @@ import { site } from "../config/site";
     </span>
     <span>
       <strong>Alba es un prototipo.</strong> Por ahora la información de disponibilidad es de prueba
-      y no corresponde a una farmacia real. <a href="#preguntas">Saber más</a>
+      y no corresponde a una farmacia real.{" "}
+      <a href="#preguntas" data-no-leer>
+        Saber más
+      </a>
     </span>
   </p>
 )}
@@ -27,12 +30,12 @@ import { site } from "../config/site";
     border-radius: 0.9rem;
     background: var(--secondary-soft);
     border: 1px solid rgba(201, 122, 43, 0.35);
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     line-height: 1.5;
   }
 
   .aviso a {
-    color: var(--primary);
+    color: var(--primary-dark);
     font-weight: 700;
     text-decoration: underline;
     text-underline-offset: 3px;

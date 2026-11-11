@@ -1,10 +1,12 @@
 ---
 // Sección Preguntas frecuentes: dudas comunes en lenguaje simple
 import { preguntas } from "../data/preguntas";
+import BotonEscuchar from "./BotonEscuchar.astro";
 ---
 
 <section id="preguntas" class="preguntas seccion-tarjeta">
   <h2>Preguntas frecuentes</h2>
+  <BotonEscuchar />
   <div class="lista">
     {preguntas.map(({ pregunta, respuesta }) => (
       <details class="pregunta">
@@ -30,6 +32,7 @@ import { preguntas } from "../data/preguntas";
 
   .lista {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0.75rem;
   }
 
@@ -48,10 +51,14 @@ import { preguntas } from "../data/preguntas";
     padding: 1rem 1.25rem;
     border-radius: 1rem;
     color: var(--primary-dark);
-    font-size: 1.15rem;
+    font-size: 1.3rem;
     font-weight: 700;
     cursor: pointer;
     list-style: none;
+  }
+
+  summary > span:first-child {
+    min-width: 0;
   }
 
   summary::-webkit-details-marker {
@@ -96,6 +103,5 @@ import { preguntas } from "../data/preguntas";
   .pregunta p {
     margin: 0;
     padding: 0 1.25rem 1.25rem;
-    font-size: 1.1rem;
   }
 </style>

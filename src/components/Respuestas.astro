@@ -19,10 +19,12 @@ const casos = [
     mensaje: respuestaAgotado,
   },
 ];
+import BotonEscuchar from "./BotonEscuchar.astro";
 ---
 
 <section id="respuestas" class="respuestas seccion-tarjeta">
   <h2>Qué te responde Alba</h2>
+  <BotonEscuchar />
   <div class="casos">
     {casos.map(({ clase, titulo, texto, mensaje }) => (
       <article class:list={["caso", `caso--${clase}`]}>
@@ -87,7 +89,7 @@ const casos = [
 
   @media (max-width: 860px) {
     .casos {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
     }
   }
 </style>

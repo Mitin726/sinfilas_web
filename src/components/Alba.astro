@@ -1,11 +1,13 @@
 ---
 // Sección Conoce a Alba: presentación del asistente
 import EnlaceTelegram from "./EnlaceTelegram.astro";
+import BotonEscuchar from "./BotonEscuchar.astro";
 ---
 
 <section id="alba" class="alba-layout seccion-tarjeta">
   <div class="alba-texto">
     <h2>Te presentamos a Alba, tu asistente virtual</h2>
+    <BotonEscuchar />
     <p>
       Alba es una asistente virtual que puedes escribir por Telegram como si fuera un mensaje
       normal. Solo escribe el nombre del medicamento que necesitas y ella te responde en segundos
@@ -62,7 +64,7 @@ import EnlaceTelegram from "./EnlaceTelegram.astro";
 
   @media (max-width: 640px) {
     .alba-layout {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
     }
 
     .alba-visual {

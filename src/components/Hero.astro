@@ -4,6 +4,7 @@ import { conversacionDemo } from "../data/chat";
 import AvisoPrototipo from "./AvisoPrototipo.astro";
 import EnlaceTelegram from "./EnlaceTelegram.astro";
 import ChatTelefono from "./chat/ChatTelefono.astro";
+import BotonEscuchar from "./BotonEscuchar.astro";
 ---
 
 <section id="hero" class="hero">
@@ -23,6 +24,7 @@ import ChatTelefono from "./chat/ChatTelefono.astro";
       </a>
     </div>
     <AvisoPrototipo />
+    <BotonEscuchar />
   </div>
 
   <figure class="hero-demo" aria-label="Ejemplo de una conversación real con Alba en Telegram">
@@ -68,7 +70,7 @@ import ChatTelefono from "./chat/ChatTelefono.astro";
     border: 1px solid var(--border);
     color: var(--primary);
     font-weight: 700;
-    font-size: 0.95rem;
+    font-size: 1.05rem;
   }
 
   .hero-texto h1 {
@@ -77,7 +79,7 @@ import ChatTelefono from "./chat/ChatTelefono.astro";
 
   .lead {
     max-width: 560px;
-    font-size: clamp(1.15rem, 1.8vw, 1.3rem);
+    font-size: clamp(1.3rem, 2vw, 1.45rem);
   }
 
   .acciones {
@@ -100,13 +102,13 @@ import ChatTelefono from "./chat/ChatTelefono.astro";
     background: #ffffff;
     border: 1px solid var(--border);
     color: var(--primary-dark);
-    font-size: 1rem;
+    font-size: 1.1rem;
     text-align: center;
   }
 
   @media (max-width: 900px) {
     .hero {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
     }
   }
 

@@ -10,7 +10,15 @@ export default [
   {
     files: ["tests/**/*.mjs", "*.config.{js,mjs}"],
     languageOptions: {
-      globals: { process: "readonly", console: "readonly", URL: "readonly", document: "readonly" },
+      globals: {
+        process: "readonly",
+        console: "readonly",
+        URL: "readonly",
+        document: "readonly",
+        window: "readonly",
+        localStorage: "readonly",
+        getComputedStyle: "readonly",
+      },
     },
   },
 ];

@@ -15,7 +15,7 @@ const esAlba = mensaje.de === "alba";
   {mensaje.lineas.map((linea) => (
     <span class="linea" set:html={linea} />
   ))}
-  <span class="hora">
+  <span class="hora" data-no-leer>
     {mensaje.hora}
     {!esAlba && (
       <span aria-hidden="true" class="visto">
@@ -32,7 +32,7 @@ const esAlba = mensaje.de === "alba";
     max-width: 88%;
     padding: 0.55rem 0.85rem 0.4rem;
     border-radius: 1.1rem;
-    font-size: 1rem;
+    font-size: 1.1rem;
     line-height: 1.45;
     color: #111b21;
     box-shadow: 0 1px 1.5px rgba(17, 27, 33, 0.16);
@@ -57,12 +57,12 @@ const esAlba = mensaje.de === "alba";
   .hora {
     align-self: flex-end;
     margin-top: 0.15rem;
-    font-size: 0.75rem;
-    color: #667781;
+    font-size: 0.8rem;
+    color: #4a5b66;
   }
 
   .burbuja--usuario .hora {
-    color: #4f8a3c;
+    color: #2a561e;
   }
 
   .visto {

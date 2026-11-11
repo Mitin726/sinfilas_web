@@ -1,10 +1,12 @@
 ---
 // Sección La solución: consultar antes de ir
+import BotonEscuchar from "./BotonEscuchar.astro";
 ---
 
 <section id="solucion" class="solucion-layout seccion-tarjeta">
   <div class="solucion-texto">
     <h2>Existe una forma más simple</h2>
+    <BotonEscuchar />
     <p>
       Antes de salir de casa, puedes preguntar si el medicamento está disponible y evitar un viaje
       largo o una fila innecesaria. Así puedes decidir con calma y ahorrar tiempo, energía y
@@ -61,7 +63,7 @@
 
   @media (max-width: 640px) {
     .solucion-layout {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
     }
   }
 </style>

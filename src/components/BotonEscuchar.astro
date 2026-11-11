@@ -1,0 +1,168 @@
+---
+// Botón que lee en voz alta la sección donde está, con la voz del navegador.
+// Empieza oculto y solo se muestra si el navegador puede hablar.
+interface Props {
+  /** "claro" para usarlo sobre fondos oscuros. */
+  variante?: "normal" | "claro";
+}
+
+const { variante = "normal" } = Astro.props;
+---
+
+<button
+  type="button"
+  class:list={["boton-escuchar", { "boton-escuchar--claro": variante === "claro" }]}
+  data-escuchar
+  hidden
+>
+  <span class="icono" aria-hidden="true">
+    🔊
+  </span>
+  <span class="texto">Escuchar esta sección</span>
+</button>
+
+<script>
+  const synth = "speechSynthesis" in window ? window.speechSynthesis : null;
+  const botones = document.querySelectorAll<HTMLButtonElement>("[data-escuchar]");
+
+  // Elementos que no se leen: decorativos, botones y estilos/scripts.
+  // Los botones y enlaces de acción se omiten: leerlos interrumpe el texto.
+  const NO_LEER = '[aria-hidden="true"], button, a.boton, script, style, [data-no-leer]';
+  // Elementos de bloque a los que se añade una pausa al final.
+  const BLOQUES = "h1, h2, h3, p, li, summary, figcaption, .linea";
+  const EMOJIS = /[\p{Extended_Pictographic}\u{FE0F}\u{200D}]/gu;
+
+  let botonActivo: HTMLButtonElement | null = null;
+
+  function textoDeSeccion(seccion: Element): string {
+    const copia = seccion.cloneNode(true) as Element;
+    copia.querySelectorAll(NO_LEER).forEach((el) => el.remove());
+    copia.querySelectorAll(BLOQUES).forEach((el) => {
+      const t = el.textContent?.trim() ?? "";
+      if (t && !/[.!?:;…]$/.test(t)) el.append(". ");
+      else el.append(" ");
+    });
+    // Separa del texto siguiente las etiquetas para lector de pantalla ("Alba responde:").
+    copia.querySelectorAll(".sr-only").forEach((el) => el.append(" "));
+    return (copia.textContent ?? "").replace(EMOJIS, "").replace(/\s+/g, " ").trim();
+  }
+
+  // Algunos navegadores cortan las frases largas: se lee por partes.
+  function partes(texto: string): string[] {
+    return (
+      texto
+        .match(/[^.!?]+[.!?]*\s*/g)
+        ?.map((p) => p.trim())
+        .filter(Boolean) ?? [texto]
+    );
+  }
+
+  function vozEnEspanol(): SpeechSynthesisVoice | undefined {
+    const voces = synth?.getVoices() ?? [];
+    const preferidas = ["es-CO", "es-MX", "es-US", "es-419", "es-ES"];
+    for (const lang of preferidas) {
+      const voz = voces.find((v) => v.lang.replace("_", "-") === lang);
+      if (voz) return voz;
+    }
+    return voces.find((v) => v.lang.toLowerCase().startsWith("es"));
+  }
+
+  function marcar(boton: HTMLButtonElement, leyendo: boolean) {
+    boton.setAttribute("aria-pressed", String(leyendo));
+    boton.querySelector(".icono")!.textContent = leyendo ? "⏹" : "🔊";
+    boton.querySelector(".texto")!.textContent = leyendo
+      ? "Detener lectura"
+      : "Escuchar esta sección";
+  }
+
+  function detener() {
+    synth?.cancel();
+    if (botonActivo) marcar(botonActivo, false);
+    botonActivo = null;
+  }
+
+  function leer(boton: HTMLButtonElement) {
+    const seccion = boton.closest("section");
+    if (!synth || !seccion) return;
+    detener();
+    botonActivo = boton;
+    marcar(boton, true);
+
+    const voz = vozEnEspanol();
+    const trozos = partes(textoDeSeccion(seccion));
+    trozos.forEach((trozo, i) => {
+      const u = new SpeechSynthesisUtterance(trozo);
+      u.lang = voz?.lang ?? "es-CO";
+      if (voz) u.voice = voz;
+      u.rate = 0.9; // un poco más despacio de lo normal
+      if (i === trozos.length - 1) {
+        u.onend = () => {
+          if (botonActivo === boton) detener();
+        };
+      }
+      synth.speak(u);
+    });
+  }
+
+  if (synth) {
+    synth.getVoices(); // algunos navegadores cargan las voces tarde
+    botones.forEach((boton) => {
+      boton.hidden = false;
+      boton.setAttribute("aria-pressed", "false");
+      boton.addEventListener("click", () => {
+        if (botonActivo === boton) detener();
+        else leer(boton);
+      });
+    });
+    window.addEventListener("pagehide", detener);
+  }
+</script>
+
+<style>
+  .boton-escuchar {
+    display: inline-flex;
+    align-items: center;
+    justify-self: start;
+    align-self: flex-start;
+    gap: 0.5rem;
+    min-height: 3rem;
+    padding: 0.5rem 1.1rem;
+    border: 2px solid var(--border);
+    border-radius: 999px;
+    background: #ffffff;
+    color: var(--primary-dark);
+    font-family: inherit;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .boton-escuchar[hidden] {
+    display: none;
+  }
+
+  .boton-escuchar:hover {
+    background: var(--primary-soft);
+    border-color: var(--primary);
+  }
+
+  .boton-escuchar[aria-pressed="true"] {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #ffffff;
+  }
+
+  .boton-escuchar--claro {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.6);
+    color: #ffffff;
+  }
+
+  .boton-escuchar--claro:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #ffffff;
+  }
+</style>

@@ -1,10 +1,12 @@
 ---
 // Sección El problema: las largas filas
 import { problemas } from "../data/problemas";
+import BotonEscuchar from "./BotonEscuchar.astro";
 ---
 
 <section id="problema" class="problema seccion-tarjeta">
   <h2>Un problema que viven muchas personas todos los días</h2>
+  <BotonEscuchar />
 
   {problemas.map(({ titulo, descripcion }) => (
     <div class="tarjeta-problema">
