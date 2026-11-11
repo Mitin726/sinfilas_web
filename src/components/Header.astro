@@ -1,0 +1,95 @@
+---
+// Header: logo/nombre del proyecto y navegación simple
+import { site } from "../config/site";
+import { navegacion } from "../data/navegacion";
+---
+
+<header class="site-header">
+  <div class="brand-wrap">
+    <img class="brand-logo" src={site.logo} alt={site.nombre} />
+    <a href="#hero">{site.nombre}</a>
+  </div>
+  <nav aria-label="Navegación principal">
+    {navegacion.map(({ href, texto }) => (
+      <a href={href}>{texto}</a>
+    ))}
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.3rem 1rem;
+    margin-top: 0.75rem;
+    background: linear-gradient(180deg, rgba(244, 247, 248, 0.98), rgba(232, 244, 248, 0.96));
+    border: 1px solid var(--border);
+    border-radius: 0 0 1.1rem 1.1rem;
+    box-shadow: 0 8px 18px rgba(22, 62, 84, 0.08);
+    backdrop-filter: blur(6px);
+  }
+
+  .brand-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+
+  .brand-logo {
+    width: auto;
+    height: 44px;
+    display: block;
+  }
+
+  header a {
+    font-weight: 700;
+    color: var(--primary-dark);
+  }
+
+  .brand-wrap a {
+    font-size: 1.3rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+  }
+
+  header nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+
+  header nav a {
+    padding: 0.7rem 0.95rem;
+    border-radius: 999px;
+    color: var(--primary);
+    transition:
+      background-color 0.2s ease,
+      box-shadow 0.2s ease,
+      color 0.2s ease;
+  }
+
+  header nav a:hover,
+  header nav a:focus-visible {
+    background: var(--primary-soft);
+    box-shadow: 0 0 0 3px var(--focus);
+    outline: none;
+  }
+
+  @media (max-width: 640px) {
+    .site-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    header nav {
+      justify-content: flex-start;
+    }
+  }
+</style>

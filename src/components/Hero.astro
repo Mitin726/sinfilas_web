@@ -1,0 +1,42 @@
+---
+// Sección Hero: título del problema y botón de acción
+---
+
+<section id="hero" class="hero">
+  <div>
+    <h1>¿Hiciste fila para enterarte que no había tu medicamento?</h1>
+    <p>Consulta antes de salir de casa y evita perder tiempo, energía y tranquilidad.</p>
+    <a href="#alba" class="boton boton-secundario">
+      Conoce a Alba
+    </a>
+  </div>
+  <div class="hero-imagen" aria-label="Espacio para ilustración de Alba">
+    <!-- TODO: agregar imagen o ilustración aquí -->
+  </div>
+</section>
+
+<style>
+  .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 62vh;
+    padding: clamp(2.5rem, 6vw, 5rem) clamp(1.2rem, 3vw, 3rem);
+    background: linear-gradient(135deg, var(--primary-soft) 0%, rgba(255, 255, 255, 0.9) 100%);
+    border: 1px solid var(--border);
+    border-radius: 1.5rem;
+    box-shadow: 0 14px 32px var(--shadow);
+  }
+
+  .hero h1,
+  .hero p {
+    max-width: 680px;
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      min-height: auto;
+    }
+  }
+</style>

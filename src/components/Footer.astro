@@ -1,0 +1,78 @@
+---
+import { site } from "../config/site";
+import EnlaceTelegram from "./EnlaceTelegram.astro";
+---
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-texto">
+      <p class="footer-brand">{site.asistente}</p>
+      <p>Un asistente pensado para cuidar tu tiempo y tranquilidad</p>
+      <p>
+        <EnlaceTelegram>Habla con Alba en Telegram</EnlaceTelegram>
+      </p>
+      <p>
+        © {site.anioCopyright} {site.asistente}. Todos los derechos reservados.
+      </p>
+    </div>
+    <div class="footer-logo-wrap">
+      <img class="footer-logo" src={site.logo} alt={site.nombre} />
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    padding: 2rem 1rem 3rem;
+    color: var(--muted);
+  }
+
+  .footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  footer p {
+    margin: 0;
+    color: var(--muted);
+  }
+
+  .footer-brand {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--primary-dark);
+  }
+
+  .footer-logo-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+  }
+
+  .footer-logo {
+    display: block;
+    width: auto;
+    height: 92px;
+  }
+
+  @media (max-width: 640px) {
+    .footer-content {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      justify-items: center;
+      text-align: center;
+    }
+  }
+</style>

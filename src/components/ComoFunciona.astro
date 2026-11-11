@@ -1,0 +1,33 @@
+---
+// Sección Cómo funciona: pasos simples
+import { pasos } from "../data/pasos";
+---
+
+<section id="como-funciona" class="como-funciona seccion-tarjeta">
+  <h2>Así de fácil es usar a Alba</h2>
+  <ol>
+    {pasos.map(({ titulo, descripcion }, i) => (
+      <li>
+        <span class="paso-numero">{i + 1}</span>
+        <div>
+          <h3>{titulo}</h3>
+          <p>{descripcion}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+</section>
+
+<style>
+  .como-funciona {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .como-funciona ol {
+    margin: 0;
+    padding-left: 1.5rem;
+    display: grid;
+    gap: 0.75rem;
+  }
+</style>
