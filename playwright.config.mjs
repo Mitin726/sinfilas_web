@@ -1,7 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
 // Carpeta que se sirve durante las pruebas (el sitio publicado).
-const SITE_DIR = ".";
+const SITE_DIR = "dist";
 const PORT = 4321;
 
 export default defineConfig({

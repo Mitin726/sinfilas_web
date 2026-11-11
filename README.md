@@ -1,4 +1,4 @@
-![Banner del proyecto SinFilas](./images/banner_proyecto.png)
+![Banner del proyecto SinFilas](./docs/banner_proyecto.png)
 
 # SinFilas — Landing Page
 ![Status](https://img.shields.io/badge/Estado-Finalizado-success)<br>
