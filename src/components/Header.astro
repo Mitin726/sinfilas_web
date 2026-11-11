@@ -1,0 +1,15 @@
+---
+// Header: logo/nombre del proyecto y navegación simple
+import { site } from "../config/site";
+import { navegacion } from "../data/navegacion";
+---
+
+<header>
+  <div class="brand-wrap">
+    <img class="brand-logo" src={site.logo} alt={site.nombre}>
+    <a href="#hero">{site.nombre}</a>
+  </div>
+  <nav aria-label="Navegación principal">
+    {navegacion.map(({ href, texto }) => <a href={href}>{texto}</a>)}
+  </nav>
+</header>
