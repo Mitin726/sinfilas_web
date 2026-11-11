@@ -114,7 +114,6 @@ header a {
   color: var(--primary-dark);
 }
 
-header > a,
 .brand-wrap a {
   font-size: 1.3rem;
   font-weight: 900;
@@ -250,16 +249,6 @@ section[id] {
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  padding: 1.5rem;
-  border-radius: 1.25rem;
-  background: var(--primary-soft);
-  border: 1px solid var(--border);
-}
-
-.solucion-visual {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   min-height: 220px;
   padding: 1rem;
   border-radius: 1rem;
