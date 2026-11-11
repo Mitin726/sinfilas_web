@@ -1,0 +1,72 @@
+---
+// Un mensaje de chat con el aspecto de Telegram.
+import type { MensajeChat } from "../../data/chat";
+
+interface Props {
+  mensaje: MensajeChat;
+}
+
+const { mensaje } = Astro.props;
+const esAlba = mensaje.de === "alba";
+---
+
+<div class:list={["burbuja", esAlba ? "burbuja--alba" : "burbuja--usuario"]}>
+  <span class="sr-only">{esAlba ? "Alba responde:" : "Tú escribes:"}</span>
+  {mensaje.lineas.map((linea) => (
+    <span class="linea" set:html={linea} />
+  ))}
+  <span class="hora">
+    {mensaje.hora}
+    {!esAlba && (
+      <span aria-hidden="true" class="visto">
+        ✓✓
+      </span>
+    )}
+  </span>
+</div>
+
+<style>
+  .burbuja {
+    display: flex;
+    flex-direction: column;
+    max-width: 88%;
+    padding: 0.55rem 0.85rem 0.4rem;
+    border-radius: 1.1rem;
+    font-size: 1rem;
+    line-height: 1.45;
+    color: #111b21;
+    box-shadow: 0 1px 1.5px rgba(17, 27, 33, 0.16);
+  }
+
+  .burbuja--alba {
+    align-self: flex-start;
+    background: #ffffff;
+    border-bottom-left-radius: 0.3rem;
+  }
+
+  .burbuja--usuario {
+    align-self: flex-end;
+    background: #e2f7cb;
+    border-bottom-right-radius: 0.3rem;
+  }
+
+  .linea :global(strong) {
+    font-weight: 900;
+  }
+
+  .hora {
+    align-self: flex-end;
+    margin-top: 0.15rem;
+    font-size: 0.75rem;
+    color: #667781;
+  }
+
+  .burbuja--usuario .hora {
+    color: #4f8a3c;
+  }
+
+  .visto {
+    margin-left: 0.2rem;
+    letter-spacing: -0.2em;
+  }
+</style>

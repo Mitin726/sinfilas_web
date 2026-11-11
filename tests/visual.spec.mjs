@@ -12,26 +12,28 @@ test("la landing se ve igual que la referencia", async ({ page }) => {
 test("el estado hover/focus de la navegación se mantiene", async ({ page }) => {
   await page.goto("/");
   await page.evaluate(() => document.fonts.ready);
-  await page.getByRole("link", { name: "Conoce a Alba" }).first().focus();
+  await page.getByRole("link", { name: "Cómo funciona" }).first().focus();
   await expect(page.locator("header")).toHaveScreenshot("header-focus.png");
 });
 
 // Estado hover de cada botón de llamada a la acción.
 const botones = [
-  { seccion: "#hero", nombre: "Conoce a Alba" },
-  { seccion: "#alba", nombre: "Habla con Alba" },
-  { seccion: "#llamado-accion", nombre: "Habla con Alba ahora" },
+  { seccion: "#hero", nombre: "Escribirle a Alba en Telegram" },
+  { seccion: "#alba", nombre: "Escribirle a Alba en Telegram" },
+  { seccion: "#llamado-accion", nombre: "Escribirle a Alba en Telegram" },
 ];
 
 for (const { seccion, nombre } of botones) {
-  test(`hover del botón «${nombre}»`, async ({ page }) => {
+  test(`hover del botón «${nombre}» en ${seccion}`, async ({ page }) => {
     await page.goto("/");
     await page.evaluate(() => document.fonts.ready);
     const boton = page.locator(seccion).getByRole("link", { name: nombre, exact: true });
     await boton.scrollIntoViewIfNeeded();
     await boton.hover();
     await page.waitForTimeout(300); // fin de la transición
-    await expect(page.locator(seccion)).toHaveScreenshot(`hover-${seccion.slice(1)}.png`, {
+    // Se captura solo el botón: capturar la sección entera puede hacer scroll
+    // y sacar el botón de debajo del cursor, perdiendo el hover.
+    await expect(boton).toHaveScreenshot(`hover-${seccion.slice(1)}.png`, {
       animations: "disabled",
     });
   });

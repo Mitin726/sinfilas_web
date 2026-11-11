@@ -5,14 +5,17 @@ import { pasos } from "../data/pasos";
 
 <section id="como-funciona" class="como-funciona seccion-tarjeta">
   <h2>Así de fácil es usar a Alba</h2>
-  <ol>
+  <ol class="pasos">
     {pasos.map(({ titulo, descripcion }, i) => (
-      <li>
-        <span class="paso-numero">{i + 1}</span>
-        <div>
-          <h3>{titulo}</h3>
-          <p>{descripcion}</p>
-        </div>
+      <li class="paso">
+        <span class="paso-numero" aria-hidden="true">
+          {i + 1}
+        </span>
+        <h3>
+          <span class="sr-only">Paso {i + 1}: </span>
+          {titulo}
+        </h3>
+        <p>{descripcion}</p>
       </li>
     ))}
   </ol>
@@ -21,13 +24,53 @@ import { pasos } from "../data/pasos";
 <style>
   .como-funciona {
     display: grid;
-    gap: 1rem;
+    gap: 1.5rem;
   }
 
-  .como-funciona ol {
+  .como-funciona h2 {
     margin: 0;
-    padding-left: 1.5rem;
+  }
+
+  .pasos {
     display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .paso {
+    display: flex;
+    flex-direction: column;
     gap: 0.75rem;
+    padding: 1.5rem;
+    border-radius: 1.1rem;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+  }
+
+  .paso h3,
+  .paso p {
+    margin: 0;
+  }
+
+  .paso-numero {
+    display: grid;
+    place-items: center;
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 50%;
+    background: var(--secondary);
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 900;
+    box-shadow: 0 8px 16px rgba(232, 155, 82, 0.3);
+  }
+
+  @media (max-width: 860px) {
+    .pasos {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

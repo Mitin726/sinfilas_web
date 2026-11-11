@@ -95,7 +95,8 @@ main {
 }
 
 section {
-  padding: clamp(4rem, 8vw, 6rem) 0;
+  padding: clamp(3.5rem, 7vw, 5rem) 0;
+  margin-top: 1.5rem;
 }
 
 section[id] {
@@ -156,6 +157,28 @@ section[id] {
   outline: none;
 }
 
+/* Botón con borde, para acciones secundarias. */
+.boton-contorno {
+  background: #ffffff;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.boton-contorno:hover,
+.boton-contorno:focus-visible {
+  background: var(--primary-soft);
+  box-shadow: 0 0 0 3px var(--focus);
+  outline: none;
+}
+
+/* Botón más alto para las acciones principales. */
+.boton-grande {
+  min-height: 3.6rem;
+  padding: 1rem 1.75rem;
+  font-size: 1.15rem;
+  text-align: center;
+}
+
 /* Botón blanco para usar sobre fondos de color primario. */
 .boton-claro {
   background: #ffffff;
@@ -175,7 +198,22 @@ section[id] {
 @media (max-width: 640px) {
   body {
     font-size: 17px;
+    /* Espacio para el botón fijo de abajo (BotonFijoMovil). */
+    padding-bottom: 6rem;
   }
+}
+
+/* Oculta un texto a la vista pero lo deja disponible para lectores de pantalla. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 :focus-visible {

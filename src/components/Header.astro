@@ -1,12 +1,13 @@
 ---
-// Header: logo/nombre del proyecto y navegación simple
+// Header: logo/nombre del proyecto, navegación simple y acceso directo a Alba
 import { site } from "../config/site";
 import { navegacion } from "../data/navegacion";
+import EnlaceTelegram from "./EnlaceTelegram.astro";
 ---
 
 <header class="site-header">
   <div class="brand-wrap">
-    <img class="brand-logo" src={site.logo} alt={site.nombre} />
+    <img class="brand-logo" src={site.logo} alt="" />
     <a href="#hero">{site.nombre}</a>
   </div>
   <nav aria-label="Navegación principal">
@@ -14,6 +15,9 @@ import { navegacion } from "../data/navegacion";
       <a href={href}>{texto}</a>
     ))}
   </nav>
+  <div class="header-accion">
+    <EnlaceTelegram class="boton boton-primario">Escribirle a Alba</EnlaceTelegram>
+  </div>
 </header>
 
 <style>
@@ -25,19 +29,19 @@ import { navegacion } from "../data/navegacion";
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    padding: 1.3rem 1rem;
+    padding: 0.9rem 1rem;
     margin-top: 0.75rem;
-    background: linear-gradient(180deg, rgba(244, 247, 248, 0.98), rgba(232, 244, 248, 0.96));
+    background: rgba(255, 255, 255, 0.92);
     border: 1px solid var(--border);
     border-radius: 0 0 1.1rem 1.1rem;
     box-shadow: 0 8px 18px rgba(22, 62, 84, 0.08);
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(8px);
   }
 
   .brand-wrap {
     display: flex;
     align-items: center;
-    gap: 0.7rem;
+    gap: 0.6rem;
   }
 
   .brand-logo {
@@ -52,7 +56,7 @@ import { navegacion } from "../data/navegacion";
   }
 
   .brand-wrap a {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: 900;
     letter-spacing: -0.02em;
   }
@@ -61,12 +65,12 @@ import { navegacion } from "../data/navegacion";
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: flex-end;
-    gap: 0.5rem;
+    justify-content: center;
+    gap: 0.25rem;
   }
 
   header nav a {
-    padding: 0.7rem 0.95rem;
+    padding: 0.7rem 1rem;
     border-radius: 999px;
     color: var(--primary);
     transition:
@@ -82,14 +86,29 @@ import { navegacion } from "../data/navegacion";
     outline: none;
   }
 
+  @media (max-width: 900px) {
+    .header-accion {
+      display: none;
+    }
+  }
+
   @media (max-width: 640px) {
+    /* En celulares el header no queda fijo: ocuparía mucho espacio y ya
+       existe el botón fijo de abajo (BotonFijoMovil). */
     .site-header {
+      position: static;
       flex-direction: column;
       align-items: flex-start;
+      gap: 0.5rem;
     }
 
     header nav {
       justify-content: flex-start;
+      margin-left: -0.6rem;
+    }
+
+    header nav a {
+      padding: 0.6rem 0.6rem;
     }
   }
 </style>

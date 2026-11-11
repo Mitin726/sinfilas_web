@@ -1,0 +1,32 @@
+---
+// Botón siempre visible en la parte de abajo de la pantalla (solo en celulares).
+import EnlaceTelegram from "./EnlaceTelegram.astro";
+---
+
+<div class="barra-fija">
+  <EnlaceTelegram class="boton boton-secundario boton-grande">Escribirle a Alba</EnlaceTelegram>
+</div>
+
+<style>
+  .barra-fija {
+    display: none;
+  }
+
+  @media (max-width: 640px) {
+    .barra-fija {
+      position: fixed;
+      inset: auto 0 0 0;
+      z-index: 20;
+      display: flex;
+      padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom));
+      background: rgba(255, 255, 255, 0.96);
+      border-top: 1px solid var(--border);
+      box-shadow: 0 -8px 20px rgba(22, 62, 84, 0.1);
+      backdrop-filter: blur(6px);
+    }
+
+    .barra-fija :global(.boton) {
+      width: 100%;
+    }
+  }
+</style>

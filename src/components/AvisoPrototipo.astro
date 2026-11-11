@@ -1,0 +1,40 @@
+---
+// Aviso honesto mientras Alba sea un prototipo con datos de prueba.
+// Se desactiva cambiando `esPrototipo` en src/config/site.ts.
+import { site } from "../config/site";
+---
+
+{site.esPrototipo && (
+  <p class="aviso">
+    <span class="icono" aria-hidden="true">
+      ℹ️
+    </span>
+    <span>
+      <strong>Alba es un prototipo.</strong> Por ahora la información de disponibilidad es de prueba
+      y no corresponde a una farmacia real. <a href="#preguntas">Saber más</a>
+    </span>
+  </p>
+)}
+
+<style>
+  .aviso {
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+    max-width: 620px;
+    margin: 0;
+    padding: 0.85rem 1rem;
+    border-radius: 0.9rem;
+    background: var(--secondary-soft);
+    border: 1px solid rgba(201, 122, 43, 0.35);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .aviso a {
+    color: var(--primary);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>

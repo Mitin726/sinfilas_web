@@ -23,13 +23,18 @@ La idea es simple: permitir que la persona consulte la disponibilidad de un medi
 
 La web está organizada en una sola página con scroll, dividida en estas secciones:
 
-1. **Hero** — presentación del problema y llamado a la acción inicial
-2. **El problema** — explicación de las filas y desplazamientos innecesarios
-3. **La solución** — la idea general antes de presentar a Alba
-4. **Conoce a Alba** — presentación del asistente virtual, con enlace directo para hablarle por Telegram
-5. **Cómo funciona** — 3 pasos simples de uso
-6. **Llamado a la acción final** — invitación a hablar con Alba
-7. **Footer** — información de contacto y enlace a Telegram
+1. **Hero**: el problema, el botón para escribirle a Alba y un celular con una conversación real
+2. **El problema**: las filas y los desplazamientos innecesarios
+3. **La solución**: la idea general antes de presentar a Alba
+4. **Conoce a Alba**: presentación del asistente virtual
+5. **Cómo funciona**: 3 pasos simples de uso
+6. **Escríbele así**: ejemplos de mensajes listos para copiar
+7. **Qué te responde Alba**: respuesta cuando hay y cuando está agotado, con mensajes reales
+8. **¿Primera vez con Telegram?**: guía para instalar Telegram y abrir el chat
+9. **Preguntas frecuentes**: costo, privacidad, errores de escritura y estado del prototipo
+10. **Llamado a la acción final** y **footer**
+
+En celulares hay además un botón fijo abajo para escribirle a Alba en cualquier momento.
 
 El diseño está pensado especialmente para personas adultas mayores: texto grande, alto contraste, lenguaje simple sin tecnicismos, y botones grandes y claros.
 
@@ -77,17 +82,14 @@ sinfilas-web/
 ├── public/images/          # imágenes servidas tal cual (logo, Alba, ilustración)
 ├── src/
 │   ├── components/         # una sección de la página por componente
-│   │   ├── Header.astro
-│   │   ├── Hero.astro
-│   │   ├── Problema.astro
-│   │   ├── Solucion.astro
-│   │   ├── Alba.astro
-│   │   ├── ComoFunciona.astro
-│   │   ├── LlamadoAccion.astro
-│   │   ├── Footer.astro
+│   │   ├── chat/           # burbuja de chat y celular con la conversación de Alba
+│   │   ├── Header.astro, Hero.astro, Problema.astro, Solucion.astro, Alba.astro
+│   │   ├── ComoFunciona.astro, Ejemplos.astro, Respuestas.astro
+│   │   ├── PrimeraVez.astro, PreguntasFrecuentes.astro, LlamadoAccion.astro
+│   │   ├── Footer.astro, BotonFijoMovil.astro, AvisoPrototipo.astro
 │   │   └── EnlaceTelegram.astro
-│   ├── config/site.ts      # datos generales: nombre, enlace del bot, logo
-│   ├── data/               # textos en listas: navegación, problemas y pasos
+│   ├── config/site.ts      # datos generales: nombre, enlace del bot, aviso de prototipo
+│   ├── data/               # textos: navegación, problemas, pasos, chat, ejemplos y preguntas
 │   ├── layouts/BaseLayout.astro
 │   ├── pages/index.astro   # la página: une todos los componentes
 │   └── styles/global.css   # variables de diseño, base y botones
@@ -97,7 +99,7 @@ sinfilas-web/
 └── netlify.toml            # build en Netlify: npm run build → dist/
 ```
 
-Para cambiar el enlace del bot basta con editarlo en `src/config/site.ts`. Para añadir un paso o un problema, se agrega un elemento a la lista correspondiente en `src/data/`.
+Para cambiar el enlace del bot basta con editarlo en `src/config/site.ts`. Cuando Alba deje de ser un prototipo, cambia `esPrototipo` a `false` en ese mismo archivo para ocultar el aviso. Para añadir un paso o un problema, se agrega un elemento a la lista correspondiente en `src/data/`.
 
 ## Estado actual del proyecto
 

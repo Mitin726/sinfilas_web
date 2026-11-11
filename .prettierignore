@@ -5,3 +5,4 @@ package-lock.json
 tests/__screenshots__/
 test-results/
 playwright-report/
+.claude/

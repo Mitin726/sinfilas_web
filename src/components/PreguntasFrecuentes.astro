@@ -1,0 +1,101 @@
+---
+// Sección Preguntas frecuentes: dudas comunes en lenguaje simple
+import { preguntas } from "../data/preguntas";
+---
+
+<section id="preguntas" class="preguntas seccion-tarjeta">
+  <h2>Preguntas frecuentes</h2>
+  <div class="lista">
+    {preguntas.map(({ pregunta, respuesta }) => (
+      <details class="pregunta">
+        <summary>
+          <span>{pregunta}</span>
+          <span class="signo" aria-hidden="true" />
+        </summary>
+        <p>{respuesta}</p>
+      </details>
+    ))}
+  </div>
+</section>
+
+<style>
+  .preguntas {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .preguntas h2 {
+    margin: 0;
+  }
+
+  .lista {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .pregunta {
+    border-radius: 1rem;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+  }
+
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 3.5rem;
+    padding: 1rem 1.25rem;
+    border-radius: 1rem;
+    color: var(--primary-dark);
+    font-size: 1.15rem;
+    font-weight: 700;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary:hover {
+    background: var(--primary-soft);
+  }
+
+  /* Signo + que se convierte en − al abrir la pregunta. */
+  .signo {
+    position: relative;
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: var(--primary);
+  }
+
+  .signo::before,
+  .signo::after {
+    content: "";
+    position: absolute;
+    inset: 50% auto auto 50%;
+    width: 0.9rem;
+    height: 3px;
+    border-radius: 2px;
+    background: #ffffff;
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s ease;
+  }
+
+  .signo::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  .pregunta[open] .signo::after {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  .pregunta p {
+    margin: 0;
+    padding: 0 1.25rem 1.25rem;
+    font-size: 1.1rem;
+  }
+</style>

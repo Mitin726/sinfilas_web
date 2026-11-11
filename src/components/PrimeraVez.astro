@@ -1,0 +1,210 @@
+---
+// Sección ¿Primera vez con Telegram?: guía para quien nunca lo ha usado
+import { descargasTelegram, site } from "../config/site";
+import EnlaceTelegram from "./EnlaceTelegram.astro";
+---
+
+<section id="primera-vez" class="primera-vez seccion-tarjeta">
+  <div class="encabezado">
+    <h2>¿Primera vez con Telegram?</h2>
+    <p>
+      Telegram es una aplicación gratuita para enviar mensajes, parecida a WhatsApp. Estos pasos
+      solo se hacen una vez.
+    </p>
+  </div>
+
+  <ol class="pasos">
+    <li class="paso">
+      <span class="numero" aria-hidden="true">
+        1
+      </span>
+      <div class="contenido">
+        <h3>
+          <span class="sr-only">Paso 1: </span>Instala Telegram
+        </h3>
+        <p>Descárgalo gratis desde la tienda de aplicaciones de tu celular.</p>
+        <div class="descargas">
+          <a
+            class="boton boton-contorno"
+            href={descargasTelegram.android}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Descargar para Android
+          </a>
+          <a
+            class="boton boton-contorno"
+            href={descargasTelegram.iphone}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Descargar para iPhone
+          </a>
+        </div>
+      </div>
+    </li>
+
+    <li class="paso">
+      <span class="numero" aria-hidden="true">
+        2
+      </span>
+      <div class="contenido">
+        <h3>
+          <span class="sr-only">Paso 2: </span>Abre el chat de Alba
+        </h3>
+        <p>
+          Toca cualquier botón que diga <strong>«Escribirle a Alba»</strong> en esta página. También
+          puedes buscar <strong>{site.telegramUsuario}</strong> dentro de Telegram.
+        </p>
+      </div>
+    </li>
+
+    <li class="paso">
+      <span class="numero" aria-hidden="true">
+        3
+      </span>
+      <div class="contenido">
+        <h3>
+          <span class="sr-only">Paso 3: </span>Toca «Iniciar»
+        </h3>
+        <p>
+          La primera vez verás un botón abajo de la pantalla que dice <strong>INICIAR</strong> (o
+          <strong>START</strong>). Tócalo una sola vez.
+        </p>
+        <div class="mock-iniciar" aria-hidden="true">
+          INICIAR
+        </div>
+      </div>
+    </li>
+
+    <li class="paso">
+      <span class="numero" aria-hidden="true">
+        4
+      </span>
+      <div class="contenido">
+        <h3>
+          <span class="sr-only">Paso 4: </span>Escribe tu medicamento
+        </h3>
+        <p>Escribe el nombre, envía el mensaje y espera unos segundos la respuesta de Alba.</p>
+      </div>
+    </li>
+  </ol>
+
+  <div class="cierre">
+    <EnlaceTelegram class="boton boton-primario boton-grande">
+      Escribirle a Alba en Telegram
+    </EnlaceTelegram>
+    <p>
+      <span aria-hidden="true">🤝</span> ¿Te da inseguridad? Pídele a un familiar que te acompañe la
+      primera vez. Después es tan fácil como enviar un mensaje.
+    </p>
+  </div>
+</section>
+
+<style>
+  .primera-vez {
+    display: grid;
+    gap: 1.75rem;
+  }
+
+  .encabezado {
+    display: grid;
+    gap: 0.75rem;
+    max-width: 720px;
+  }
+
+  .encabezado h2,
+  .encabezado p {
+    margin: 0;
+  }
+
+  .encabezado p {
+    font-size: 1.15rem;
+  }
+
+  .pasos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .paso {
+    display: flex;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-radius: 1.1rem;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+  }
+
+  .numero {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #ffffff;
+    font-size: 1.3rem;
+    font-weight: 900;
+  }
+
+  .contenido {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .contenido h3,
+  .contenido p {
+    margin: 0;
+  }
+
+  .descargas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 0.25rem;
+  }
+
+  .mock-iniciar {
+    margin-top: 0.25rem;
+    padding: 0.8rem;
+    border-radius: 0.7rem;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    color: #3390ec;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-align: center;
+  }
+
+  .cierre {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+  }
+
+  .cierre p {
+    flex: 1 1 320px;
+    margin: 0;
+    color: var(--muted);
+  }
+
+  @media (max-width: 860px) {
+    .pasos {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .paso {
+      flex-direction: column;
+    }
+  }
+</style>
