@@ -1,7 +1,8 @@
 ---
 // Celular con una conversación de Telegram. Los mensajes aparecen uno a uno
 // (salvo que la persona haya pedido reducir el movimiento en su sistema).
-import { site } from "../../config/site";
+import { Image } from "astro:assets";
+import fotoAlba from "../../assets/alba_perfil.png";
 import type { MensajeChat } from "../../data/chat";
 import Burbuja from "./Burbuja.astro";
 
@@ -16,7 +17,7 @@ const { mensajes } = Astro.props;
   <div class="pantalla">
     <div class="barra-chat" aria-hidden="true">
       <span class="atras">‹</span>
-      <img class="avatar" src={site.fotoAlba} alt="" width="40" height="40" />
+      <Image class="avatar" src={fotoAlba} alt="" width={80} height={80} />
       <span class="contacto">
         <strong>Alba</strong>
         <small>bot</small>

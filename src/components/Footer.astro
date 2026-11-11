@@ -1,5 +1,7 @@
 ---
+import { Image } from "astro:assets";
 import { site } from "../config/site";
+import logo from "../assets/logo_sinfilas.png";
 import EnlaceTelegram from "./EnlaceTelegram.astro";
 ---
 
@@ -16,7 +18,7 @@ import EnlaceTelegram from "./EnlaceTelegram.astro";
       </p>
     </div>
     <div class="footer-logo-wrap">
-      <img class="footer-logo" src={site.logo} alt={site.nombre} />
+      <Image class="footer-logo" src={logo} alt={site.nombre} height={184} loading="eager" />
     </div>
   </div>
 </footer>

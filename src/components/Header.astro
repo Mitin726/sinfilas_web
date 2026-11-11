@@ -1,6 +1,8 @@
 ---
 // Header: logo/nombre del proyecto, navegación simple y acceso directo a Alba
+import { Image } from "astro:assets";
 import { site } from "../config/site";
+import logo from "../assets/logo_sinfilas.png";
 import { navegacion } from "../data/navegacion";
 import EnlaceTelegram from "./EnlaceTelegram.astro";
 import TamanoTexto from "./TamanoTexto.astro";
@@ -12,7 +14,7 @@ import TamanoTexto from "./TamanoTexto.astro";
 
 <header class="site-header">
   <div class="brand-wrap">
-    <img class="brand-logo" src={site.logo} alt="" />
+    <Image class="brand-logo" src={logo} alt="" height={88} loading="eager" />
     <a href="#hero">{site.nombre}</a>
   </div>
   <nav aria-label="Navegación principal">

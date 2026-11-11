@@ -29,7 +29,7 @@ const { variante = "normal" } = Astro.props;
   // Los botones y enlaces de acción se omiten: leerlos interrumpe el texto.
   const NO_LEER = '[aria-hidden="true"], button, a.boton, script, style, [data-no-leer]';
   // Elementos de bloque a los que se añade una pausa al final.
-  const BLOQUES = "h1, h2, h3, p, li, summary, figcaption, .linea";
+  const BLOQUES = "h1, h2, h3, p, li, summary, figcaption, .linea, .antetitulo";
   const EMOJIS = /[\p{Extended_Pictographic}\u{FE0F}\u{200D}]/gu;
 
   let botonActivo: HTMLButtonElement | null = null;

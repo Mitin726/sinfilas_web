@@ -3,6 +3,7 @@
 import EnlaceTelegram from "./EnlaceTelegram.astro";
 import BotonEscuchar from "./BotonEscuchar.astro";
 import CodigoQR from "./CodigoQR.astro";
+import CompartirWhatsApp from "./CompartirWhatsApp.astro";
 ---
 
 <section id="llamado-accion" class="llamado-accion seccion-tarjeta seccion-tarjeta--destacada">
@@ -13,9 +14,12 @@ import CodigoQR from "./CodigoQR.astro";
       Consulta antes de salir de casa y disfruta de más tranquilidad, menos esperas y la certeza de
       ir solo cuando el medicamento esté disponible.
     </p>
-    <EnlaceTelegram class="boton boton-claro boton-grande">
-      Escribirle a Alba en Telegram
-    </EnlaceTelegram>
+    <div class="acciones">
+      <EnlaceTelegram class="boton boton-claro boton-grande">
+        Escribirle a Alba en Telegram
+      </EnlaceTelegram>
+      <CompartirWhatsApp variante="claro" />
+    </div>
   </div>
   <CodigoQR variante="claro" />
 </section>
@@ -37,6 +41,12 @@ import CodigoQR from "./CodigoQR.astro";
     align-items: flex-start;
     gap: 1rem;
     max-width: 560px;
+  }
+
+  .acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
   }
 
   .llamado-accion h2,

@@ -1,0 +1,52 @@
+---
+// Hace aparecer suavemente las secciones al llegar a ellas con el scroll.
+// - No anima nada si la persona pidió reducir el movimiento en su sistema.
+// - No oculta lo que ya está en pantalla al cargar.
+// - Sin JavaScript (o sin IntersectionObserver), todo se ve normal.
+---
+
+<script>
+  const reducir = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!reducir && "IntersectionObserver" in window) {
+    const observador = new IntersectionObserver(
+      (entradas) => {
+        for (const entrada of entradas) {
+          if (entrada.isIntersecting) {
+            entrada.target.classList.add("visible");
+            observador.unobserve(entrada.target);
+          }
+        }
+      },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.05 },
+    );
+
+    document.querySelectorAll("main > section").forEach((seccion) => {
+      if (seccion.getBoundingClientRect().top < window.innerHeight) return;
+      seccion.classList.add("revelar");
+      observador.observe(seccion);
+    });
+  }
+</script>
+
+<style is:global>
+  .revelar {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.6s ease-out,
+      transform 0.6s ease-out;
+  }
+
+  .revelar.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media print {
+    .revelar {
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>

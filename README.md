@@ -44,6 +44,13 @@ En celulares hay además un botón fijo abajo para escribirle a Alba en cualquie
 - Contraste de color nivel **AAA** (7:1), foco bien visible al navegar con el teclado y enlace «Saltar al contenido principal».
 - Sin scroll horizontal en ningún tamaño de letra, desde pantallas de 320 px.
 
+### Diseño y rendimiento
+
+- Las imágenes viven en `src/assets/` y Astro las sirve optimizadas en WebP, en varios tamaños y con carga diferida. Todo el sitio compilado pesa unos 360 KB (antes, solo las imágenes sumaban unos 4,9 MB).
+- Iconos propios en SVG (`src/components/Icono.astro`), sin librerías externas.
+- Las secciones aparecen suavemente al hacer scroll (`RevelarAlScroll.astro`), salvo que el sistema pida reducir el movimiento.
+- Botón «Enviar a un familiar por WhatsApp» para compartir la página.
+
 El diseño está pensado especialmente para personas adultas mayores: texto grande, alto contraste, lenguaje simple sin tecnicismos, y botones grandes y claros.
 
 ## Tecnologías usadas
@@ -88,7 +95,8 @@ En varias secciones de la página hay botones que dicen **"Habla con Alba"**, lo
 
 ```
 sinfilas-web/
-├── public/images/          # imágenes servidas tal cual (logo, Alba, ilustración)
+├── public/                # favicon e ícono para iPhone
+├── src/assets/            # imágenes que Astro optimiza (logo, Alba, foto de la solución)
 ├── src/
 │   ├── components/         # una sección de la página por componente
 │   │   ├── chat/           # burbuja de chat y celular con la conversación de Alba

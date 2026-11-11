@@ -2,23 +2,83 @@
 // Sección El problema: las largas filas
 import { problemas } from "../data/problemas";
 import BotonEscuchar from "./BotonEscuchar.astro";
+import Icono from "./Icono.astro";
 ---
 
-<section id="problema" class="problema seccion-tarjeta">
-  <h2>Un problema que viven muchas personas todos los días</h2>
-  <BotonEscuchar />
+<section id="problema" class="problema seccion-abierta">
+  <div class="encabezado">
+    <div class="antetitulo">El problema</div>
+    <h2>Un problema que viven muchas personas todos los días</h2>
+    <BotonEscuchar />
+  </div>
 
-  {problemas.map(({ titulo, descripcion }) => (
-    <div class="tarjeta-problema">
-      <h3>{titulo}</h3>
-      <p>{descripcion}</p>
-    </div>
-  ))}
+  <ul class="tarjetas">
+    {problemas.map(({ titulo, descripcion, icono }) => (
+      <li class="tarjeta-problema">
+        <span class="icono">
+          <Icono nombre={icono} tamano={32} />
+        </span>
+        <h3>{titulo}</h3>
+        <p>{descripcion}</p>
+      </li>
+    ))}
+  </ul>
 </section>
 
 <style>
   .problema {
     display: grid;
+    gap: 2rem;
+  }
+
+  .encabezado {
+    display: grid;
     gap: 1rem;
+    max-width: 760px;
+  }
+
+  .encabezado h2 {
+    margin: 0;
+  }
+
+  .tarjetas {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .tarjeta-problema {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.75rem 1.5rem;
+    border-radius: 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: 0 12px 28px rgba(22, 62, 84, 0.07);
+  }
+
+  .tarjeta-problema h3,
+  .tarjeta-problema p {
+    margin: 0;
+  }
+
+  .icono {
+    display: grid;
+    place-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 1rem;
+    background: var(--secondary-soft);
+    color: var(--secondary-texto);
+  }
+
+  @media (max-width: 860px) {
+    .tarjetas {
+      grid-template-columns: minmax(0, 1fr);
+    }
   }
 </style>

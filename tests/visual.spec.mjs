@@ -2,9 +2,25 @@ import { test, expect } from "@playwright/test";
 
 // Compara la página completa contra las capturas de referencia guardadas
 // en tests/__screenshots__. Si algo cambia visualmente, la prueba falla.
+// Recorre la página para que carguen las imágenes diferidas (loading="lazy").
+async function cargarImagenes(page) {
+  await page.evaluate(async () => {
+    for (let y = 0; y < document.body.scrollHeight; y += window.innerHeight) {
+      window.scrollTo(0, y);
+      await new Promise((r) => setTimeout(r, 50));
+    }
+    window.scrollTo(0, 0);
+  });
+  await page.waitForLoadState("networkidle");
+  await page.evaluate(() =>
+    Promise.all([...document.images].map((img) => img.decode().catch(() => {}))),
+  );
+}
+
 test("la landing se ve igual que la referencia", async ({ page }) => {
   await page.goto("/");
   await page.evaluate(() => document.fonts.ready);
+  await cargarImagenes(page);
   await page.waitForLoadState("networkidle");
   await expect(page).toHaveScreenshot("landing.png", { fullPage: true, animations: "disabled" });
 });

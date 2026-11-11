@@ -5,10 +5,9 @@ export const site = {
   descripcion:
     "Pregúntale a Alba por Telegram si tu medicamento está disponible antes de salir de casa.",
   asistente: "Alba",
+  url: "https://sinfilas.netlify.app",
   telegramUrl: "https://t.me/medicamentos_alba_bot",
   telegramUsuario: "@medicamentos_alba_bot",
-  logo: "/images/logo_sinfilas.png",
-  fotoAlba: "/images/alba_perfil.png",
   anioCopyright: 2026,
   // Mientras sea true, la web muestra el aviso de que Alba es un prototipo
   // y que la información de disponibilidad es de prueba.
