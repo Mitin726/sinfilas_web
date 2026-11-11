@@ -8,11 +8,15 @@ import EnlaceTelegram from "./EnlaceTelegram.astro";
     <div class="footer-texto">
       <p class="footer-brand">{site.asistente}</p>
       <p>Un asistente pensado para cuidar tu tiempo y tranquilidad</p>
-      <p><EnlaceTelegram>Habla con Alba en Telegram</EnlaceTelegram></p>
-      <p>© {site.anioCopyright} {site.asistente}. Todos los derechos reservados.</p>
+      <p>
+        <EnlaceTelegram>Habla con Alba en Telegram</EnlaceTelegram>
+      </p>
+      <p>
+        © {site.anioCopyright} {site.asistente}. Todos los derechos reservados.
+      </p>
     </div>
     <div class="footer-logo-wrap">
-      <img class="footer-logo" src={site.logo} alt={site.nombre}>
+      <img class="footer-logo" src={site.logo} alt={site.nombre} />
     </div>
   </div>
 </footer>

@@ -9,4 +9,6 @@ interface Props {
 const { class: className } = Astro.props;
 ---
 
-<a href={site.telegramUrl} target="_blank" rel="noopener noreferrer" class={className}><slot /></a>
+<a href={site.telegramUrl} target="_blank" rel="noopener noreferrer" class={className}>
+  <slot />
+</a>
