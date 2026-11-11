@@ -1,0 +1,12 @@
+---
+// Enlace que abre el chat de Alba en Telegram en una pestaña nueva.
+import { site } from "../config/site";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<a href={site.telegramUrl} target="_blank" rel="noopener noreferrer" class={className}><slot /></a>
