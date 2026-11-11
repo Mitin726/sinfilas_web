@@ -2,11 +2,14 @@
 // Sección ¿Primera vez con Telegram?: guía para quien nunca lo ha usado
 import { descargasTelegram, site } from "../config/site";
 import EnlaceTelegram from "./EnlaceTelegram.astro";
+import BotonEscuchar from "./BotonEscuchar.astro";
+import CodigoQR from "./CodigoQR.astro";
 ---
 
 <section id="primera-vez" class="primera-vez seccion-tarjeta">
   <div class="encabezado">
     <h2>¿Primera vez con Telegram?</h2>
+    <BotonEscuchar />
     <p>
       Telegram es una aplicación gratuita para enviar mensajes, parecida a WhatsApp. Estos pasos
       solo se hacen una vez.
@@ -56,6 +59,7 @@ import EnlaceTelegram from "./EnlaceTelegram.astro";
           Toca cualquier botón que diga <strong>«Escribirle a Alba»</strong> en esta página. También
           puedes buscar <strong>{site.telegramUsuario}</strong> dentro de Telegram.
         </p>
+        <CodigoQR />
       </div>
     </li>
 
@@ -68,7 +72,7 @@ import EnlaceTelegram from "./EnlaceTelegram.astro";
           <span class="sr-only">Paso 3: </span>Toca «Iniciar»
         </h3>
         <p>
-          La primera vez verás un botón abajo de la pantalla que dice <strong>INICIAR</strong> (o
+          La primera vez verás un botón abajo de la pantalla que dice <strong>INICIAR</strong> (o{" "}
           <strong>START</strong>). Tócalo una sola vez.
         </p>
         <div class="mock-iniciar" aria-hidden="true">
@@ -119,7 +123,7 @@ import EnlaceTelegram from "./EnlaceTelegram.astro";
   }
 
   .encabezado p {
-    font-size: 1.15rem;
+    font-size: 1.35rem;
   }
 
   .pasos {
@@ -177,7 +181,7 @@ import EnlaceTelegram from "./EnlaceTelegram.astro";
     border-radius: 0.7rem;
     background: #ffffff;
     border: 1px solid var(--border);
-    color: #3390ec;
+    color: #1c5290;
     font-weight: 900;
     letter-spacing: 0.08em;
     text-align: center;
@@ -198,7 +202,7 @@ import EnlaceTelegram from "./EnlaceTelegram.astro";
 
   @media (max-width: 860px) {
     .pasos {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
     }
   }
 

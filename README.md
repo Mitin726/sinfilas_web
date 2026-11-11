@@ -36,6 +36,14 @@ La web está organizada en una sola página con scroll, dividida en estas seccio
 
 En celulares hay además un botón fijo abajo para escribirle a Alba en cualquier momento.
 
+### Accesibilidad
+
+- Letra base de 20 px y control **A / A+ / A++** que agranda toda la página (se recuerda en el navegador).
+- Botón **«Escuchar esta sección»** en cada sección: lee el texto en voz alta con la voz del navegador, en español y un poco más despacio.
+- **Código QR** (en computadores) para abrir el chat de Alba con la cámara del celular.
+- Contraste de color nivel **AAA** (7:1), foco bien visible al navegar con el teclado y enlace «Saltar al contenido principal».
+- Sin scroll horizontal en ningún tamaño de letra, desde pantallas de 320 px.
+
 El diseño está pensado especialmente para personas adultas mayores: texto grande, alto contraste, lenguaje simple sin tecnicismos, y botones grandes y claros.
 
 ## Tecnologías usadas
@@ -64,10 +72,11 @@ npm run preview      # ver el sitio generado
 npm run lint         # ESLint
 npm run format       # formatear con Prettier
 npm run check        # verificación de tipos de Astro/TypeScript
+npm test             # todas las pruebas: visuales y de accesibilidad
 npm run test:visual  # comparar la página contra las capturas de referencia
 ```
 
-Las pruebas visuales comparan la página, píxel a píxel, con las capturas guardadas en `tests/__screenshots__/` (escritorio, tablet y móvil). Si un cambio de diseño es intencional, se actualizan con `npm run test:visual:update`. Las capturas dependen del sistema operativo donde se generan, por eso se ejecutan en local y no en la integración continua (CI).
+Las pruebas visuales comparan la página, píxel a píxel, con las capturas guardadas en `tests/__screenshots__/` (escritorio, tablet y móvil). Si un cambio de diseño es intencional, se actualizan con `npm run test:visual:update`. Las pruebas de accesibilidad (`tests/accesibilidad.spec.mjs`) usan axe-core para revisar WCAG 2.2 AA y el contraste AAA, y comprueban el control de tamaño de letra, la lectura en voz alta y que no haya scroll horizontal. Las capturas dependen del sistema operativo donde se generan, por eso se ejecutan en local y no en la integración continua (CI).
 
 ## Cómo probar el bot desde la web
 

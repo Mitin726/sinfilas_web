@@ -5,19 +5,21 @@
  */
 
 :root {
-  --primary: #1f5f7a;
+  --primary: #1b5770; /* 7,9:1 sobre blanco (AAA) */
   --primary-dark: #163e54;
   --primary-soft: #e8f4f8;
   --primary-soft-strong: #d0e7f0;
   --secondary: #e89b52;
   --secondary-dark: #c97a2b;
   --secondary-soft: #f8e7d3;
+  /* Texto sobre el naranja: el blanco solo da 2,3:1 de contraste; este da 7,2:1 (AAA). */
+  --on-secondary: #14212b;
   --success: #6fa8a1;
   --bg: #f4f7f8;
   --surface: #ffffff;
   --surface-alt: #edf5f8;
   --text: #1f2b35;
-  --muted: #536573;
+  --muted: #3f5163;
   --border: rgba(31, 95, 122, 0.18);
   --shadow: rgba(22, 62, 84, 0.12);
   --focus: rgba(31, 95, 122, 0.32);
@@ -33,10 +35,26 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Control de tamaño de letra (TamanoTexto): todo el sitio usa rem, así que
+   basta con escalar la raíz. */
+html[data-texto="grande"] {
+  font-size: 112.5%;
+}
+
+html[data-texto="muy-grande"] {
+  font-size: 125%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   margin: 0;
   font-family: "Lato", sans-serif;
-  font-size: 18px;
+  font-size: 1.25rem; /* 20 px; escala con el control de tamaño de letra */
   line-height: 1.6;
   color: var(--text);
   background: var(--bg);
@@ -71,6 +89,33 @@ h3 {
 
 h1 {
   font-size: clamp(2.25rem, 5vw, 3rem);
+}
+
+/* Con letra grande en celulares, las palabras largas se cortan con guion
+   en vez de desbordar la pantalla. */
+h1,
+h2,
+h3 {
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 640px) {
+  h1,
+  h2,
+  h3 {
+    hyphens: auto;
+  }
+}
+
+p,
+li,
+summary {
+  overflow-wrap: break-word;
+}
+
+/* Los hijos de una sección pueden encogerse por debajo de su palabra más larga. */
+.seccion-tarjeta > * {
+  min-width: 0;
 }
 
 h2 {
@@ -128,7 +173,7 @@ section[id] {
   justify-content: center;
   padding: 0.95rem 1.6rem;
   border-radius: 0.9rem;
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   font-weight: 700;
   transition:
     background-color 0.2s ease,
@@ -144,7 +189,7 @@ section[id] {
 
 .boton-secundario {
   background: var(--secondary);
-  color: #ffffff;
+  color: var(--on-secondary);
   box-shadow: 0 10px 20px rgba(232, 155, 82, 0.28);
 }
 
@@ -153,6 +198,7 @@ section[id] {
 .boton-secundario:hover,
 .boton-secundario:focus-visible {
   background: var(--primary-dark);
+  color: #ffffff;
   box-shadow: 0 0 0 3px rgba(31, 95, 122, 0.18);
   outline: none;
 }
@@ -175,7 +221,7 @@ section[id] {
 .boton-grande {
   min-height: 3.6rem;
   padding: 1rem 1.75rem;
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   text-align: center;
 }
 
@@ -197,10 +243,28 @@ section[id] {
 
 @media (max-width: 640px) {
   body {
-    font-size: 17px;
+    font-size: 1.125rem; /* 18 px */
     /* Espacio para el botón fijo de abajo (BotonFijoMovil). */
     padding-bottom: 6rem;
   }
+}
+
+/* Enlace para saltar al contenido: solo aparece al navegar con el teclado. */
+.saltar-contenido {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.9rem 1.25rem;
+  border-radius: 0.8rem;
+  background: var(--primary-dark);
+  color: #ffffff;
+  font-weight: 700;
+  transform: translateY(-200%);
+}
+
+.saltar-contenido:focus {
+  transform: none;
 }
 
 /* Oculta un texto a la vista pero lo deja disponible para lectores de pantalla. */
@@ -216,7 +280,15 @@ section[id] {
   border: 0;
 }
 
-:focus-visible {
-  outline: 3px solid var(--focus);
-  outline-offset: 2px;
+/* Foco bien visible al navegar con el teclado (va al final para ganarle a los
+   estados :focus-visible de los botones, que comparten el estilo del hover). */
+:focus-visible,
+.boton:focus-visible {
+  outline: 3px solid var(--primary-dark);
+  outline-offset: 3px;
+}
+
+.boton-claro:focus-visible,
+.seccion-tarjeta--destacada :focus-visible {
+  outline-color: #ffffff;
 }

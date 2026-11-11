@@ -23,8 +23,20 @@ const { titulo = site.titulo } = Astro.props;
       href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap"
       rel="stylesheet"
     />
+    <!-- Aplica el tamaño de letra elegido antes de pintar, para evitar un salto visual. -->
+    <script is:inline>
+      try {
+        const t = localStorage.getItem("tamano-texto");
+        if (t === "grande" || t === "muy-grande") document.documentElement.dataset.texto = t;
+      } catch {
+        /* sin almacenamiento disponible */
+      }
+    </script>
   </head>
   <body>
+    <a class="saltar-contenido" href="#contenido">
+      Saltar al contenido principal
+    </a>
     <slot />
   </body>
 </html>

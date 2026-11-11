@@ -3,7 +3,12 @@
 import { site } from "../config/site";
 import { navegacion } from "../data/navegacion";
 import EnlaceTelegram from "./EnlaceTelegram.astro";
+import TamanoTexto from "./TamanoTexto.astro";
 ---
+
+<div class="barra-accesibilidad">
+  <TamanoTexto />
+</div>
 
 <header class="site-header">
   <div class="brand-wrap">
@@ -21,6 +26,13 @@ import EnlaceTelegram from "./EnlaceTelegram.astro";
 </header>
 
 <style>
+  .barra-accesibilidad {
+    display: flex;
+    justify-content: flex-end;
+    width: min(1120px, calc(100% - 2rem));
+    margin: 0.75rem auto 0;
+  }
+
   .site-header {
     position: sticky;
     top: 0;
@@ -30,7 +42,7 @@ import EnlaceTelegram from "./EnlaceTelegram.astro";
     justify-content: space-between;
     gap: 1rem;
     padding: 0.9rem 1rem;
-    margin-top: 0.75rem;
+    margin-top: 0.5rem;
     background: rgba(255, 255, 255, 0.92);
     border: 1px solid var(--border);
     border-radius: 0 0 1.1rem 1.1rem;
@@ -82,8 +94,6 @@ import EnlaceTelegram from "./EnlaceTelegram.astro";
   header nav a:hover,
   header nav a:focus-visible {
     background: var(--primary-soft);
-    box-shadow: 0 0 0 3px var(--focus);
-    outline: none;
   }
 
   @media (max-width: 900px) {
@@ -93,6 +103,10 @@ import EnlaceTelegram from "./EnlaceTelegram.astro";
   }
 
   @media (max-width: 640px) {
+    .barra-accesibilidad {
+      justify-content: center;
+    }
+
     /* En celulares el header no queda fijo: ocuparía mucho espacio y ya
        existe el botón fijo de abajo (BotonFijoMovil). */
     .site-header {

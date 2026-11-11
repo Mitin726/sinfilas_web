@@ -1,10 +1,12 @@
 ---
 // Sección Cómo funciona: pasos simples
 import { pasos } from "../data/pasos";
+import BotonEscuchar from "./BotonEscuchar.astro";
 ---
 
 <section id="como-funciona" class="como-funciona seccion-tarjeta">
   <h2>Así de fácil es usar a Alba</h2>
+  <BotonEscuchar />
   <ol class="pasos">
     {pasos.map(({ titulo, descripcion }, i) => (
       <li class="paso">
@@ -62,7 +64,7 @@ import { pasos } from "../data/pasos";
     height: 3.2rem;
     border-radius: 50%;
     background: var(--secondary);
-    color: #ffffff;
+    color: var(--on-secondary);
     font-size: 1.5rem;
     font-weight: 900;
     box-shadow: 0 8px 16px rgba(232, 155, 82, 0.3);
@@ -70,7 +72,7 @@ import { pasos } from "../data/pasos";
 
   @media (max-width: 860px) {
     .pasos {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
     }
   }
 </style>
