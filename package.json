@@ -1,0 +1,14 @@
+{
+  "name": "sinfilas-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing page del proyecto SinFilas y su asistente virtual Alba.",
+  "type": "module",
+  "scripts": {
+    "test:visual": "playwright test",
+    "test:visual:update": "playwright test --update-snapshots"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.0"
+  }
+}
