@@ -1,3 +1,9 @@
+/*
+ * Estilos globales: variables de diseño, base de elementos, contenedores
+ * y piezas compartidas (tarjeta de sección y botones).
+ * Los estilos propios de cada sección viven en su componente (src/components).
+ */
+
 :root {
   --primary: #1f5f7a;
   --primary-dark: #163e54;
@@ -16,6 +22,8 @@
   --shadow: rgba(22, 62, 84, 0.12);
   --focus: rgba(31, 95, 122, 0.32);
 }
+
+/* ---------- Base ---------- */
 
 * {
   box-sizing: border-box;
@@ -73,73 +81,13 @@ h3 {
   font-size: clamp(1.2rem, 2.2vw, 1.5rem);
 }
 
+/* ---------- Contenedores ---------- */
+
 header,
 main,
 footer {
   width: min(1120px, calc(100% - 2rem));
   margin: 0 auto;
-}
-
-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1.3rem 1rem;
-  margin-top: 0.75rem;
-  background: linear-gradient(180deg, rgba(244, 247, 248, 0.98), rgba(232, 244, 248, 0.96));
-  border: 1px solid var(--border);
-  border-radius: 0 0 1.1rem 1.1rem;
-  box-shadow: 0 8px 18px rgba(22, 62, 84, 0.08);
-  backdrop-filter: blur(6px);
-}
-
-.brand-wrap {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-}
-
-.brand-logo {
-  width: auto;
-  height: 44px;
-  display: block;
-}
-
-header a {
-  font-weight: 700;
-  color: var(--primary-dark);
-}
-
-.brand-wrap a {
-  font-size: 1.3rem;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-}
-
-header nav {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 0.5rem;
-}
-
-header nav a {
-  padding: 0.7rem 0.95rem;
-  border-radius: 999px;
-  color: var(--primary);
-  transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
-}
-
-header nav a:hover,
-header nav a:focus-visible {
-  background: var(--primary-soft);
-  box-shadow: 0 0 0 3px var(--focus);
-  outline: none;
 }
 
 main {
@@ -154,27 +102,26 @@ section[id] {
   scroll-margin-top: 5rem;
 }
 
-#hero {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 62vh;
-  padding: clamp(2.5rem, 6vw, 5rem) clamp(1.2rem, 3vw, 3rem);
-  background: linear-gradient(135deg, var(--primary-soft) 0%, rgba(255, 255, 255, 0.9) 100%);
+/* Tarjeta blanca que envuelve la mayoría de secciones. */
+.seccion-tarjeta {
+  background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 1.5rem;
-  box-shadow: 0 14px 32px var(--shadow);
+  border-radius: 1.25rem;
+  padding-left: clamp(1.2rem, 3vw, 2.5rem);
+  padding-right: clamp(1.2rem, 3vw, 2.5rem);
+  box-shadow: 0 10px 24px rgba(22, 62, 84, 0.04);
 }
 
-#hero h1,
-#hero p {
-  max-width: 680px;
+/* Variante con fondo de color primario (llamado a la acción). */
+.seccion-tarjeta--destacada {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
 }
 
-.boton,
-#hero a,
-#llamado-accion a {
+/* ---------- Botones ---------- */
+
+.boton {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -185,245 +132,46 @@ section[id] {
   transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-#hero a,
-#llamado-accion a {
-  background: var(--secondary);
-  color: #ffffff;
-  box-shadow: 0 10px 20px rgba(232, 155, 82, 0.28);
-}
-
 .boton-primario {
   background: var(--primary);
   color: #ffffff;
   box-shadow: 0 10px 20px rgba(31, 95, 122, 0.2);
 }
 
-#hero a:hover,
-#hero a:focus-visible,
-#llamado-accion a:hover,
-#llamado-accion a:focus-visible,
+.boton-secundario {
+  background: var(--secondary);
+  color: #ffffff;
+  box-shadow: 0 10px 20px rgba(232, 155, 82, 0.28);
+}
+
 .boton-primario:hover,
-.boton-primario:focus-visible {
+.boton-primario:focus-visible,
+.boton-secundario:hover,
+.boton-secundario:focus-visible {
   background: var(--primary-dark);
   box-shadow: 0 0 0 3px rgba(31, 95, 122, 0.18);
   outline: none;
 }
 
-#problema,
-#solucion,
-#alba,
-#como-funciona,
-#llamado-accion {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 1.25rem;
-  padding-left: clamp(1.2rem, 3vw, 2.5rem);
-  padding-right: clamp(1.2rem, 3vw, 2.5rem);
-  box-shadow: 0 10px 24px rgba(22, 62, 84, 0.04);
-}
-
-#problema,
-#solucion,
-#alba,
-#como-funciona {
-  display: grid;
-  gap: 1rem;
-}
-
-.solucion-layout {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  align-items: center;
-  gap: 2rem;
-}
-
-.solucion-texto {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.solucion-visual {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  min-height: 220px;
-  padding: 1rem;
-  border-radius: 1rem;
-  background: var(--primary-soft);
-  border: 1px solid var(--border);
-  box-shadow: 0 12px 22px rgba(22, 62, 84, 0.08);
-}
-
-.solucion-imagen {
-  display: block;
-  max-width: 220px;
-  width: 100%;
-  height: auto;
-  margin: 0 auto;
-  object-fit: contain;
-  border-radius: 1rem;
-  box-shadow: 0 12px 24px rgba(22, 62, 84, 0.08);
-}
-
-.alba-layout {
-  display: grid;
-  grid-template-columns: 1.3fr 0.7fr;
-  align-items: center;
-  gap: 2rem;
-}
-
-.alba-texto {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1rem;
-}
-
-.alba-visual {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.alba-imagen {
-  width: min(320px, 72vw);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  overflow: hidden;
-  background: var(--primary-soft);
-  border: 4px solid var(--primary-soft-strong);
-  box-shadow: 0 18px 32px rgba(22, 62, 84, 0.12);
-}
-
-.alba-imagen img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-#como-funciona ol {
-  margin: 0;
-  padding-left: 1.5rem;
-  display: grid;
-  gap: 0.75rem;
-}
-
-#llamado-accion {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1rem;
-  text-align: left;
-  background: var(--primary);
-  color: #ffffff;
-  border-color: var(--primary);
-  padding-top: clamp(2.5rem, 5vw, 4rem);
-  padding-bottom: clamp(2.5rem, 5vw, 4rem);
-}
-
-#llamado-accion h2,
-#llamado-accion p {
-  color: #ffffff;
-}
-
-#llamado-accion .boton-primario {
+/* Botón blanco para usar sobre fondos de color primario. */
+.boton-claro {
   background: #ffffff;
   color: var(--primary);
   box-shadow: none;
 }
 
-#llamado-accion .boton-primario:hover,
-#llamado-accion .boton-primario:focus-visible {
+.boton-claro:hover,
+.boton-claro:focus-visible {
   background: var(--primary-soft);
   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+  outline: none;
 }
 
-footer {
-  padding: 2rem 1rem 3rem;
-  color: var(--muted);
-}
-
-.footer-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--border);
-}
-
-.footer-texto {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-footer p {
-  margin: 0;
-  color: var(--muted);
-}
-
-.footer-brand {
-  font-size: 1.5rem;
-  font-weight: 900;
-  color: var(--primary-dark);
-}
-
-.footer-logo-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 120px;
-}
-
-.footer-logo {
-  display: block;
-  width: auto;
-  height: 92px;
-}
+/* ---------- Responsive y accesibilidad ---------- */
 
 @media (max-width: 640px) {
   body {
     font-size: 17px;
-  }
-
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  header nav {
-    justify-content: flex-start;
-  }
-
-  #hero {
-    min-height: auto;
-  }
-
-  .solucion-layout,
-  .alba-layout,
-  .footer-content {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .footer-content {
-    display: grid;
-    justify-items: center;
-    text-align: center;
-  }
-
-  .alba-visual {
-    order: 1;
-  }
-
-  .alba-texto {
-    order: 2;
-    align-items: center;
-    text-align: center;
   }
 }
 

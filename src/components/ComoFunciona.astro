@@ -3,7 +3,7 @@
 import { pasos } from "../data/pasos";
 ---
 
-<section id="como-funciona">
+<section id="como-funciona" class="como-funciona seccion-tarjeta">
   <h2>Así de fácil es usar a Alba</h2>
   <ol>
     {
@@ -19,3 +19,17 @@ import { pasos } from "../data/pasos";
     }
   </ol>
 </section>
+
+<style>
+  .como-funciona {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .como-funciona ol {
+    margin: 0;
+    padding-left: 1.5rem;
+    display: grid;
+    gap: 0.75rem;
+  }
+</style>
