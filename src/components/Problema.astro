@@ -3,7 +3,7 @@
 import { problemas } from "../data/problemas";
 ---
 
-<section id="problema">
+<section id="problema" class="problema seccion-tarjeta">
   <h2>Un problema que viven muchas personas todos los días</h2>
 
   {
@@ -15,3 +15,10 @@ import { problemas } from "../data/problemas";
     ))
   }
 </section>
+
+<style>
+  .problema {
+    display: grid;
+    gap: 1rem;
+  }
+</style>

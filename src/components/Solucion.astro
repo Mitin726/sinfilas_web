@@ -2,7 +2,7 @@
 // Sección La solución: consultar antes de ir
 ---
 
-<section id="solucion" class="solucion-layout">
+<section id="solucion" class="solucion-layout seccion-tarjeta">
   <div class="solucion-texto">
     <h2>Existe una forma más simple</h2>
     <p>Antes de salir de casa, puedes preguntar si el medicamento está disponible y evitar un viaje largo o una fila innecesaria. Así puedes decidir con calma y ahorrar tiempo, energía y preocupación.</p>
@@ -11,3 +11,49 @@
     <img class="solucion-imagen" src="/images/imagen_solucion.png" alt="Persona consultando la disponibilidad de un medicamento desde su celular">
   </div>
 </section>
+
+<style>
+  .solucion-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .solucion-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .solucion-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    min-height: 220px;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: var(--primary-soft);
+    border: 1px solid var(--border);
+    box-shadow: 0 12px 22px rgba(22, 62, 84, 0.08);
+  }
+
+  .solucion-imagen {
+    display: block;
+    max-width: 220px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    object-fit: contain;
+    border-radius: 1rem;
+    box-shadow: 0 12px 24px rgba(22, 62, 84, 0.08);
+  }
+
+  @media (max-width: 640px) {
+    .solucion-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

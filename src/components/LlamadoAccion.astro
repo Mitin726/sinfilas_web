@@ -3,8 +3,25 @@
 import EnlaceTelegram from "./EnlaceTelegram.astro";
 ---
 
-<section id="llamado-accion">
+<section id="llamado-accion" class="llamado-accion seccion-tarjeta seccion-tarjeta--destacada">
   <h2>No pierdas más tiempo en filas innecesarias</h2>
   <p>Consulta antes de salir de casa y disfruta de más tranquilidad, menos esperas y la certeza de ir solo cuando el medicamento esté disponible.</p>
-  <EnlaceTelegram class="boton boton-primario">Habla con Alba ahora</EnlaceTelegram>
+  <EnlaceTelegram class="boton boton-claro">Habla con Alba ahora</EnlaceTelegram>
 </section>
+
+<style>
+  .llamado-accion {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    text-align: left;
+    padding-top: clamp(2.5rem, 5vw, 4rem);
+    padding-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .llamado-accion h2,
+  .llamado-accion p {
+    color: #ffffff;
+  }
+</style>
