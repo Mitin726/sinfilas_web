@@ -6,11 +6,13 @@ import { navegacion } from "../data/navegacion";
 
 <header class="site-header">
   <div class="brand-wrap">
-    <img class="brand-logo" src={site.logo} alt={site.nombre}>
+    <img class="brand-logo" src={site.logo} alt={site.nombre} />
     <a href="#hero">{site.nombre}</a>
   </div>
   <nav aria-label="Navegación principal">
-    {navegacion.map(({ href, texto }) => <a href={href}>{texto}</a>)}
+    {navegacion.map(({ href, texto }) => (
+      <a href={href}>{texto}</a>
+    ))}
   </nav>
 </header>
 
@@ -67,7 +69,10 @@ import { navegacion } from "../data/navegacion";
     padding: 0.7rem 0.95rem;
     border-radius: 999px;
     color: var(--primary);
-    transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+    transition:
+      background-color 0.2s ease,
+      box-shadow 0.2s ease,
+      color 0.2s ease;
   }
 
   header nav a:hover,

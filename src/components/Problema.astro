@@ -6,14 +6,12 @@ import { problemas } from "../data/problemas";
 <section id="problema" class="problema seccion-tarjeta">
   <h2>Un problema que viven muchas personas todos los días</h2>
 
-  {
-    problemas.map(({ titulo, descripcion }) => (
-      <div class="tarjeta-problema">
-        <h3>{titulo}</h3>
-        <p>{descripcion}</p>
-      </div>
-    ))
-  }
+  {problemas.map(({ titulo, descripcion }) => (
+    <div class="tarjeta-problema">
+      <h3>{titulo}</h3>
+      <p>{descripcion}</p>
+    </div>
+  ))}
 </section>
 
 <style>

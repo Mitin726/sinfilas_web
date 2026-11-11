@@ -1,6 +1,7 @@
 ![Banner del proyecto SinFilas](./docs/banner_proyecto.png)
 
 # SinFilas — Landing Page
+
 ![Status](https://img.shields.io/badge/Estado-Finalizado-success)<br>
 🔗 **Sitio en vivo:** https://sinfilas.netlify.app/
 
@@ -34,9 +35,34 @@ El diseño está pensado especialmente para personas adultas mayores: texto gran
 
 ## Tecnologías usadas
 
-- **HTML5** semántico
-- **CSS3** (variables CSS, Flexbox/Grid, diseño responsive mobile-first)
+- **[Astro](https://astro.build/)**: genera HTML estático; la página no envía JavaScript al navegador
+- **HTML5** semántico y **CSS3** (variables CSS, Flexbox/Grid, diseño responsive), con estilos aislados por componente
+- **TypeScript** para los datos y la configuración del sitio
+- **Playwright** para pruebas de regresión visual
+- **ESLint** y **Prettier** para mantener el código ordenado
 - Desplegado en **Netlify**, con actualización automática cada vez que se sube un cambio al repositorio
+
+## Desarrollo local
+
+Requiere **Node.js 22.12 o superior**.
+
+```bash
+npm install          # instalar dependencias
+npm run dev          # servidor de desarrollo en http://localhost:4321
+npm run build        # generar el sitio en dist/
+npm run preview      # ver el sitio generado
+```
+
+### Calidad del código
+
+```bash
+npm run lint         # ESLint
+npm run format       # formatear con Prettier
+npm run check        # verificación de tipos de Astro/TypeScript
+npm run test:visual  # comparar la página contra las capturas de referencia
+```
+
+Las pruebas visuales comparan la página, píxel a píxel, con las capturas guardadas en `tests/__screenshots__/` (escritorio, tablet y móvil). Si un cambio de diseño es intencional, se actualizan con `npm run test:visual:update`. Las capturas dependen del sistema operativo donde se generan, por eso se ejecutan en local y no en la integración continua (CI).
 
 ## Cómo probar el bot desde la web
 
@@ -48,15 +74,30 @@ En varias secciones de la página hay botones que dicen **"Habla con Alba"**, lo
 
 ```
 sinfilas-web/
-├── index.html
-├── css/
-│   └── styles.css
-└── images/
-    ├── logo_sinfilas.png
-    ├── alba_perfil.png
-    ├── imagen_solucion.png
-    └── banner_proyecto.png
+├── public/images/          # imágenes servidas tal cual (logo, Alba, ilustración)
+├── src/
+│   ├── components/         # una sección de la página por componente
+│   │   ├── Header.astro
+│   │   ├── Hero.astro
+│   │   ├── Problema.astro
+│   │   ├── Solucion.astro
+│   │   ├── Alba.astro
+│   │   ├── ComoFunciona.astro
+│   │   ├── LlamadoAccion.astro
+│   │   ├── Footer.astro
+│   │   └── EnlaceTelegram.astro
+│   ├── config/site.ts      # datos generales: nombre, enlace del bot, logo
+│   ├── data/               # textos en listas: navegación, problemas y pasos
+│   ├── layouts/BaseLayout.astro
+│   ├── pages/index.astro   # la página: une todos los componentes
+│   └── styles/global.css   # variables de diseño, base y botones
+├── tests/                  # pruebas de regresión visual (Playwright)
+├── docs/                   # recursos del README
+├── astro.config.mjs
+└── netlify.toml            # build en Netlify: npm run build → dist/
 ```
+
+Para cambiar el enlace del bot basta con editarlo en `src/config/site.ts`. Para añadir un paso o un problema, se agrega un elemento a la lista correspondiente en `src/data/`.
 
 ## Estado actual del proyecto
 

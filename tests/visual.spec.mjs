@@ -31,6 +31,8 @@ for (const { seccion, nombre } of botones) {
     await boton.scrollIntoViewIfNeeded();
     await boton.hover();
     await page.waitForTimeout(300); // fin de la transición
-    await expect(page.locator(seccion)).toHaveScreenshot(`hover-${seccion.slice(1)}.png`, { animations: "disabled" });
+    await expect(page.locator(seccion)).toHaveScreenshot(`hover-${seccion.slice(1)}.png`, {
+      animations: "disabled",
+    });
   });
 }
