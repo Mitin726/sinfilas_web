@@ -1,4 +1,4 @@
-![Bot de Gastos](./images/banner_proyecto.png)
+![Banner del proyecto SinFilas](./images/banner_proyecto.png)
 
 # SinFilas — Landing Page
 ![Status](https://img.shields.io/badge/Estado-Finalizado-success)<br>
@@ -36,7 +36,6 @@ El diseño está pensado especialmente para personas adultas mayores: texto gran
 
 - **HTML5** semántico
 - **CSS3** (variables CSS, Flexbox/Grid, diseño responsive mobile-first)
-- **JavaScript** (vanilla, sin frameworks)
 - Desplegado en **Netlify**, con actualización automática cada vez que se sube un cambio al repositorio
 
 ## Cómo probar el bot desde la web
@@ -52,12 +51,11 @@ sinfilas-web/
 ├── index.html
 ├── css/
 │   └── styles.css
-├── js/
-│   └── main.js
 └── images/
     ├── logo_sinfilas.png
     ├── alba_perfil.png
-    └── solucion_ilustracion.png
+    ├── imagen_solucion.png
+    └── banner_proyecto.png
 ```
 
 ## Estado actual del proyecto
