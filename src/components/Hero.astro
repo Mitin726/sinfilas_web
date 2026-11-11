@@ -1,42 +1,122 @@
 ---
-// Sección Hero: título del problema y botón de acción
+// Sección Hero: el problema, la acción principal y una conversación real con Alba
+import { conversacionDemo } from "../data/chat";
+import AvisoPrototipo from "./AvisoPrototipo.astro";
+import EnlaceTelegram from "./EnlaceTelegram.astro";
+import ChatTelefono from "./chat/ChatTelefono.astro";
 ---
 
 <section id="hero" class="hero">
-  <div>
+  <div class="hero-texto">
+    <p class="etiqueta">Asistente gratuito en Telegram</p>
     <h1>¿Hiciste fila para enterarte que no había tu medicamento?</h1>
-    <p>Consulta antes de salir de casa y evita perder tiempo, energía y tranquilidad.</p>
-    <a href="#alba" class="boton boton-secundario">
-      Conoce a Alba
-    </a>
+    <p class="lead">
+      Pregúntale a Alba antes de salir de casa. Le escribes el nombre del medicamento y en segundos
+      te dice si lo hay.
+    </p>
+    <div class="acciones">
+      <EnlaceTelegram class="boton boton-secundario boton-grande">
+        Escribirle a Alba en Telegram
+      </EnlaceTelegram>
+      <a href="#como-funciona" class="boton boton-contorno boton-grande">
+        Ver cómo funciona
+      </a>
+    </div>
+    <AvisoPrototipo />
   </div>
-  <div class="hero-imagen" aria-label="Espacio para ilustración de Alba">
-    <!-- TODO: agregar imagen o ilustración aquí -->
-  </div>
+
+  <figure class="hero-demo" aria-label="Ejemplo de una conversación real con Alba en Telegram">
+    <ChatTelefono mensajes={conversacionDemo} />
+    <figcaption>
+      <span aria-hidden="true">✍️</span> Escrito con errores… <strong>¡y Alba entiende!</strong>
+    </figcaption>
+  </figure>
 </section>
 
 <style>
   .hero {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 62vh;
-    padding: clamp(2.5rem, 6vw, 5rem) clamp(1.2rem, 3vw, 3rem);
-    background: linear-gradient(135deg, var(--primary-soft) 0%, rgba(255, 255, 255, 0.9) 100%);
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    align-items: center;
+    gap: clamp(2rem, 5vw, 4rem);
+    margin-top: 1.5rem;
+    padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.2rem, 4vw, 3.5rem);
+    background:
+      radial-gradient(circle at 85% 20%, rgba(232, 155, 82, 0.16), transparent 45%),
+      linear-gradient(135deg, var(--primary-soft) 0%, #ffffff 100%);
     border: 1px solid var(--border);
-    border-radius: 1.5rem;
+    border-radius: 1.75rem;
     box-shadow: 0 14px 32px var(--shadow);
   }
 
-  .hero h1,
-  .hero p {
-    max-width: 680px;
+  .hero-texto {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .hero-texto h1,
+  .hero-texto p {
+    margin: 0;
+  }
+
+  .etiqueta {
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+
+  .hero-texto h1 {
+    font-size: clamp(2.2rem, 4.6vw, 3.4rem);
+  }
+
+  .lead {
+    max-width: 560px;
+    font-size: clamp(1.15rem, 1.8vw, 1.3rem);
+  }
+
+  .acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+  }
+
+  .hero-demo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin: 0;
+  }
+
+  .hero-demo figcaption {
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    color: var(--primary-dark);
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  @media (max-width: 900px) {
+    .hero {
+      grid-template-columns: 1fr;
+    }
   }
 
   @media (max-width: 640px) {
-    .hero {
-      min-height: auto;
+    .acciones {
+      width: 100%;
+    }
+
+    .acciones :global(.boton) {
+      width: 100%;
     }
   }
 </style>

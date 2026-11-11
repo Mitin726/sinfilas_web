@@ -1,0 +1,130 @@
+---
+// Sección Escríbele así: ejemplos de mensajes listos para copiar
+import { ejemplos } from "../data/ejemplos";
+---
+
+<section id="ejemplos" class="ejemplos seccion-tarjeta">
+  <h2>Escríbele así, como un mensaje normal</h2>
+  <p class="intro">No necesitas palabras especiales. Estos son algunos ejemplos:</p>
+
+  <ul class="lista">
+    {ejemplos.map((ejemplo) => (
+      <li class="ejemplo">
+        <span class="texto">“{ejemplo}”</span>
+        <button type="button" class="copiar" data-copiar={ejemplo}>
+          Copiar
+        </button>
+      </li>
+    ))}
+  </ul>
+
+  <p class="consejo">
+    <span aria-hidden="true">💡</span>
+    <span>
+      <strong>¿No sabes cómo se escribe?</strong> Escríbelo como suena. Alba entiende aunque haya
+      errores.
+    </span>
+  </p>
+
+  <p class="sr-only" aria-live="polite" data-estado-copiado></p>
+</section>
+
+<script>
+  // Copia el ejemplo al portapapeles y avisa en el botón y al lector de pantalla.
+  const estado = document.querySelector<HTMLElement>("[data-estado-copiado]");
+
+  document.querySelectorAll<HTMLButtonElement>("[data-copiar]").forEach((boton) => {
+    boton.addEventListener("click", async () => {
+      const texto = boton.dataset.copiar ?? "";
+      try {
+        await navigator.clipboard.writeText(texto);
+        boton.textContent = "¡Copiado!";
+        boton.classList.add("copiado");
+        if (estado) estado.textContent = `Se copió: ${texto}`;
+        setTimeout(() => {
+          boton.textContent = "Copiar";
+          boton.classList.remove("copiado");
+        }, 2500);
+      } catch {
+        if (estado) estado.textContent = "No se pudo copiar. Escribe el mensaje a mano.";
+      }
+    });
+  });
+</script>
+
+<style>
+  .ejemplos {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .ejemplos h2,
+  .ejemplos p {
+    margin: 0;
+  }
+
+  .intro {
+    font-size: 1.15rem;
+  }
+
+  .lista {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ejemplo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 0.85rem 0.85rem 1.25rem;
+    border-radius: 1rem;
+    background: #e2f7cb;
+    border: 1px solid rgba(79, 138, 60, 0.25);
+  }
+
+  .texto {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111b21;
+  }
+
+  .copiar {
+    flex-shrink: 0;
+    min-height: 3rem;
+    padding: 0.6rem 1.2rem;
+    border: 2px solid var(--primary);
+    border-radius: 0.8rem;
+    background: #ffffff;
+    color: var(--primary);
+    font: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .copiar:hover,
+  .copiar:focus-visible {
+    background: var(--primary-soft);
+  }
+
+  .copiar.copiado {
+    background: var(--primary);
+    color: #ffffff;
+  }
+
+  .consejo {
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+    padding: 1rem 1.25rem;
+    border-radius: 1rem;
+    background: var(--surface-alt);
+  }
+</style>

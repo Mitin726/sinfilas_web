@@ -1,0 +1,148 @@
+---
+// Celular con una conversación de Telegram. Los mensajes aparecen uno a uno
+// (salvo que la persona haya pedido reducir el movimiento en su sistema).
+import { site } from "../../config/site";
+import type { MensajeChat } from "../../data/chat";
+import Burbuja from "./Burbuja.astro";
+
+interface Props {
+  mensajes: MensajeChat[];
+}
+
+const { mensajes } = Astro.props;
+---
+
+<div class="telefono">
+  <div class="pantalla">
+    <div class="barra-chat" aria-hidden="true">
+      <span class="atras">‹</span>
+      <img class="avatar" src={site.fotoAlba} alt="" width="40" height="40" />
+      <span class="contacto">
+        <strong>Alba</strong>
+        <small>bot</small>
+      </span>
+    </div>
+
+    <div class="mensajes">
+      {mensajes.map((mensaje, i) => (
+        <div
+          class:list={["mensaje", `mensaje--${mensaje.de}`]}
+          style={`--retraso: ${0.6 + i * 1.5}s`}
+        >
+          <Burbuja mensaje={mensaje} />
+        </div>
+      ))}
+    </div>
+
+    <div class="entrada" aria-hidden="true">
+      <span>Mensaje</span>
+      <span class="enviar">➤</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .telefono {
+    width: min(100%, 370px);
+    padding: 0.65rem;
+    border-radius: 2.6rem;
+    background: #1b2631;
+    box-shadow:
+      0 30px 60px rgba(22, 62, 84, 0.28),
+      inset 0 0 0 2px #2d3b48;
+  }
+
+  .pantalla {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 2rem;
+    background-color: #c8dcb0;
+    background-image:
+      radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.35) 0 2px, transparent 3px),
+      radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.3) 0 2px, transparent 3px),
+      radial-gradient(circle at 40% 85%, rgba(255, 255, 255, 0.3) 0 2px, transparent 3px);
+    background-size: 90px 90px;
+  }
+
+  .barra-chat {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.75rem 1rem;
+    background: #ffffff;
+    color: #111b21;
+  }
+
+  .atras {
+    font-size: 1.8rem;
+    line-height: 1;
+    color: #3390ec;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .contacto {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .contacto small {
+    color: #707579;
+    font-size: 0.8rem;
+  }
+
+  .mensajes {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    min-height: 420px;
+    padding: 1rem 0.75rem;
+  }
+
+  .mensaje {
+    display: flex;
+    flex-direction: column;
+    animation: aparecer 0.45s ease-out both;
+    animation-delay: var(--retraso);
+  }
+
+  .entrada {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0.6rem 0.7rem;
+    padding: 0.7rem 1rem;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #8a9aa4;
+    font-size: 0.95rem;
+  }
+
+  .enviar {
+    color: #3390ec;
+  }
+
+  @keyframes aparecer {
+    from {
+      opacity: 0;
+      transform: translateY(12px) scale(0.97);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mensaje {
+      animation: none;
+    }
+  }
+</style>

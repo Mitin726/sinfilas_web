@@ -1,0 +1,93 @@
+---
+// Sección Qué te responde Alba: los dos tipos de respuesta, con mensajes reales
+import { respuestaAgotado, respuestaDisponible } from "../data/chat";
+import Burbuja from "./chat/Burbuja.astro";
+
+const casos = [
+  {
+    clase: "disponible",
+    titulo: "✅ Si está disponible",
+    texto:
+      "Alba te dice el nombre exacto, la presentación, el precio, el laboratorio y cuántas unidades hay.",
+    mensaje: respuestaDisponible,
+  },
+  {
+    clase: "agotado",
+    titulo: "❌ Si está agotado",
+    texto:
+      "Te avisa para que no hagas el viaje en vano, y te sugiere consultar más tarde o preguntar por una alternativa.",
+    mensaje: respuestaAgotado,
+  },
+];
+---
+
+<section id="respuestas" class="respuestas seccion-tarjeta">
+  <h2>Qué te responde Alba</h2>
+  <div class="casos">
+    {casos.map(({ clase, titulo, texto, mensaje }) => (
+      <article class:list={["caso", `caso--${clase}`]}>
+        <h3>{titulo}</h3>
+        <p>{texto}</p>
+        <div class="fondo-chat">
+          <Burbuja mensaje={mensaje} />
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .respuestas {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .respuestas h2 {
+    margin: 0;
+  }
+
+  .casos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .caso {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    border-radius: 1.1rem;
+    border: 2px solid;
+  }
+
+  .caso h3,
+  .caso p {
+    margin: 0;
+  }
+
+  .caso--disponible {
+    background: #f1f9ec;
+    border-color: #b7dca3;
+  }
+
+  .caso--agotado {
+    background: #fdf1ef;
+    border-color: #efc2b9;
+  }
+
+  .fondo-chat {
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: #c8dcb0;
+  }
+
+  @media (max-width: 860px) {
+    .casos {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

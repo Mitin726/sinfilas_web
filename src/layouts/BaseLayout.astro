@@ -15,6 +15,7 @@ const { titulo = site.titulo } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{titulo}</title>
+    <meta name="description" content={site.descripcion} />
     <link rel="icon" type="image/png" href={site.logo} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
