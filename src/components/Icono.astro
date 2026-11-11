@@ -1,0 +1,51 @@
+---
+// Iconos de trazo (SVG en línea, 24×24). Son decorativos: siempre van junto a
+// un texto, así que se ocultan a los lectores de pantalla.
+export type NombreIcono =
+  "reloj" | "camino" | "duda" | "mensaje" | "chispa" | "calma" | "compartir" | "corazon";
+
+interface Props {
+  nombre: NombreIcono;
+  tamano?: number;
+  class?: string;
+}
+
+const { nombre, tamano = 28, class: className } = Astro.props;
+
+const trazos: Record<NombreIcono, string> = {
+  // Reloj: círculo y manecillas.
+  reloj: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>',
+  // Camino: punto de partida, recorrido curvo y marcador de destino.
+  camino:
+    '<circle cx="6" cy="18" r="2"/><path d="M8 18h7a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h5"/><path d="M18 3.5a2.5 2.5 0 0 1 2.5 2.5c0 1.9-2.5 4.5-2.5 4.5S15.5 7.9 15.5 6A2.5 2.5 0 0 1 18 3.5Z"/>',
+  // Duda: signo de interrogación dentro de un círculo.
+  duda: '<circle cx="12" cy="12" r="9"/><path d="M9.6 9.3a2.5 2.5 0 0 1 4.8.9c0 1.7-2.4 2.2-2.4 3.6"/><path d="M12 17h.01"/>',
+  // Mensaje: globo de chat con dos líneas de texto.
+  mensaje: '<path d="M4 5h16v11H9l-5 4Z"/><path d="M8 9h8M8 12.5h5"/>',
+  // Chispa: respuesta rápida.
+  chispa: '<path d="M13 3 5 13.5h6L10 21l8-10.5h-6Z"/>',
+  // Calma: casa con un corazón (decidir desde casa).
+  calma:
+    '<path d="M4 11 12 4l8 7"/><path d="M6 9.5V20h12V9.5"/><path d="M12 17.2s-2.6-1.6-2.6-3.4a1.4 1.4 0 0 1 2.6-.8 1.4 1.4 0 0 1 2.6.8c0 1.8-2.6 3.4-2.6 3.4Z"/>',
+  // Compartir: tres nodos unidos.
+  compartir:
+    '<circle cx="18" cy="5.5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="18.5" r="2.5"/><path d="m8.2 10.8 7.6-4.1M8.2 13.2l7.6 4.1"/>',
+  // Corazón.
+  corazon: '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/>',
+};
+---
+
+<svg
+  class={className}
+  width={tamano}
+  height={tamano}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+  set:html={trazos[nombre]}
+/>

@@ -1,0 +1,45 @@
+---
+// Enlace para enviar la página a un familiar por WhatsApp (wa.me abre la app
+// en el celular o WhatsApp Web en el computador, y deja elegir el contacto).
+import { site } from "../config/site";
+import Icono from "./Icono.astro";
+
+interface Props {
+  /** "claro" para usarlo sobre fondos oscuros. */
+  variante?: "normal" | "claro";
+}
+
+const { variante = "normal" } = Astro.props;
+
+const mensaje =
+  `Hola 👋 Te comparto esta página: ${site.asistente} es una asistente gratuita en Telegram ` +
+  `que te dice si un medicamento está disponible antes de salir de casa. ${site.url}`;
+const enlace = `https://wa.me/?text=${encodeURIComponent(mensaje)}`;
+---
+
+<a
+  class:list={["boton", "compartir", variante === "claro" ? "compartir--claro" : "boton-contorno"]}
+  href={enlace}
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <Icono nombre="compartir" tamano={24} />
+  Enviar a un familiar por WhatsApp
+</a>
+
+<style>
+  .compartir {
+    gap: 0.6rem;
+  }
+
+  .compartir--claro {
+    background: transparent;
+    color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.75);
+  }
+
+  .compartir--claro:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #ffffff;
+  }
+</style>

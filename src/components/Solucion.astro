@@ -1,10 +1,13 @@
 ---
 // Sección La solución: consultar antes de ir
 import BotonEscuchar from "./BotonEscuchar.astro";
+import FotoDestacada from "./FotoDestacada.astro";
+import imagenSolucion from "../assets/imagen_solucion.png";
 ---
 
-<section id="solucion" class="solucion-layout seccion-tarjeta">
+<section id="solucion" class="solucion-layout seccion-tarjeta seccion-tarjeta--suave">
   <div class="solucion-texto">
+    <div class="antetitulo">La solución</div>
     <h2>Existe una forma más simple</h2>
     <BotonEscuchar />
     <p>
@@ -13,11 +16,12 @@ import BotonEscuchar from "./BotonEscuchar.astro";
       preocupación.
     </p>
   </div>
-  <div class="solucion-visual" aria-label="Ilustración de consulta de medicamentos antes de salir">
-    <img
-      class="solucion-imagen"
-      src="/images/imagen_solucion.png"
-      alt="Persona consultando la disponibilidad de un medicamento desde su celular"
+  <div class="solucion-visual">
+    <FotoDestacada
+      src={imagenSolucion}
+      alt="Señora mayor consultando en su celular, desde la sala de su casa"
+      globo="✅ ¡Sí está disponible!"
+      ancho={420}
     />
   </div>
 </section>
@@ -25,9 +29,9 @@ import BotonEscuchar from "./BotonEscuchar.astro";
 <style>
   .solucion-layout {
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: center;
-    gap: 1rem;
+    gap: 2.5rem;
   }
 
   .solucion-texto {
@@ -38,30 +42,10 @@ import BotonEscuchar from "./BotonEscuchar.astro";
 
   .solucion-visual {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    gap: 1rem;
-    min-height: 220px;
-    padding: 1rem;
-    border-radius: 1rem;
-    background: var(--primary-soft);
-    border: 1px solid var(--border);
-    box-shadow: 0 12px 22px rgba(22, 62, 84, 0.08);
   }
 
-  .solucion-imagen {
-    display: block;
-    max-width: 220px;
-    width: 100%;
-    height: auto;
-    margin: 0 auto;
-    object-fit: contain;
-    border-radius: 1rem;
-    box-shadow: 0 12px 24px rgba(22, 62, 84, 0.08);
-  }
-
-  @media (max-width: 640px) {
+  @media (max-width: 860px) {
     .solucion-layout {
       grid-template-columns: minmax(0, 1fr);
     }

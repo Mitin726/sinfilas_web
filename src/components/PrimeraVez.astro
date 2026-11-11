@@ -4,10 +4,12 @@ import { descargasTelegram, site } from "../config/site";
 import EnlaceTelegram from "./EnlaceTelegram.astro";
 import BotonEscuchar from "./BotonEscuchar.astro";
 import CodigoQR from "./CodigoQR.astro";
+import CompartirWhatsApp from "./CompartirWhatsApp.astro";
 ---
 
-<section id="primera-vez" class="primera-vez seccion-tarjeta">
+<section id="primera-vez" class="primera-vez seccion-tarjeta seccion-tarjeta--suave">
   <div class="encabezado">
+    <div class="antetitulo">Guía rápida</div>
     <h2>¿Primera vez con Telegram?</h2>
     <BotonEscuchar />
     <p>
@@ -102,6 +104,7 @@ import CodigoQR from "./CodigoQR.astro";
       <span aria-hidden="true">🤝</span> ¿Te da inseguridad? Pídele a un familiar que te acompañe la
       primera vez. Después es tan fácil como enviar un mensaje.
     </p>
+    <CompartirWhatsApp />
   </div>
 </section>
 
@@ -140,7 +143,7 @@ import CodigoQR from "./CodigoQR.astro";
     gap: 1rem;
     padding: 1.5rem;
     border-radius: 1.1rem;
-    background: var(--surface-alt);
+    background: var(--surface);
     border: 1px solid var(--border);
   }
 

@@ -2,17 +2,22 @@
 // Sección Cómo funciona: pasos simples
 import { pasos } from "../data/pasos";
 import BotonEscuchar from "./BotonEscuchar.astro";
+import Icono from "./Icono.astro";
 ---
 
-<section id="como-funciona" class="como-funciona seccion-tarjeta">
+<section id="como-funciona" class="como-funciona seccion-abierta">
+  <div class="antetitulo">Paso a paso</div>
   <h2>Así de fácil es usar a Alba</h2>
   <BotonEscuchar />
   <ol class="pasos">
-    {pasos.map(({ titulo, descripcion }, i) => (
+    {pasos.map(({ titulo, descripcion, icono }, i) => (
       <li class="paso">
-        <span class="paso-numero" aria-hidden="true">
-          {i + 1}
-        </span>
+        <div class="paso-cabecera">
+          <span class="paso-numero" aria-hidden="true">
+            {i + 1}
+          </span>
+          <Icono nombre={icono} tamano={34} class="paso-icono" />
+        </div>
         <h3>
           <span class="sr-only">Paso {i + 1}: </span>
           {titulo}
@@ -33,6 +38,16 @@ import BotonEscuchar from "./BotonEscuchar.astro";
     margin: 0;
   }
 
+  .paso-cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .paso-cabecera :global(.paso-icono) {
+    color: var(--primary);
+  }
+
   .pasos {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -46,10 +61,11 @@ import BotonEscuchar from "./BotonEscuchar.astro";
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-    padding: 1.5rem;
-    border-radius: 1.1rem;
-    background: var(--surface-alt);
+    padding: 1.75rem 1.5rem;
+    border-radius: 1.25rem;
+    background: var(--surface);
     border: 1px solid var(--border);
+    box-shadow: 0 12px 28px rgba(22, 62, 84, 0.07);
   }
 
   .paso h3,

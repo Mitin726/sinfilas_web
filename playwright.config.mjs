@@ -11,7 +11,11 @@ export default defineConfig({
     // La web debe verse exactamente igual: sin tolerancia.
     toHaveScreenshot: { maxDiffPixels: 0 },
   },
-  use: { baseURL: `http://localhost:${PORT}` },
+  use: {
+    baseURL: `http://localhost:${PORT}`,
+    // Sin animaciones: el chat del inicio y las secciones se ven completos.
+    reducedMotion: "reduce",
+  },
   webServer: {
     command: `node tests/serve.mjs ${SITE_DIR} ${PORT}`,
     url: `http://localhost:${PORT}`,
